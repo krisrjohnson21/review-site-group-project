@@ -1,7 +1,11 @@
 import React from 'react'
+import Superheroes from './superhero/Superheroes.jsx'
+
 
 export const App = (props) => {
-  return (<h1>Make It So React</h1>)
+
+
+  return ( <Superheroes />)
 }
 
 export default App

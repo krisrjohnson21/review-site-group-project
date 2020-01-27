@@ -8,13 +8,15 @@ feature 'user registers', %Q{
 
   # Acceptance Criteria:
   # * I must specify a valid email address,
-  #   password, and password confirmation
+  #   password, and password confirmation, must supply a first name, last name
   # * If I don't specify the required information, I am presented with
   #   an error message
 
   scenario 'provide valid registration information' do
     visit new_user_registration_path
 
+    fill_in 'First Name', with: 'John'
+    fill_in 'Last Name', with: 'Smith'
     fill_in 'Email', with: 'john@example.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'

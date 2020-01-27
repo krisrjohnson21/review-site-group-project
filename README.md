@@ -1,5 +1,7 @@
 # README
 
+[![Codeship Status for krisrjohnson21/review-site-group-project](https://app.codeship.com/projects/1789f4e0-2365-0138-72b3-5e60cb46bbdf/status?branch=master)](https://app.codeship.com/projects/382991)
+
 # Superhero Review App
 
 -Title: Zero to Hero

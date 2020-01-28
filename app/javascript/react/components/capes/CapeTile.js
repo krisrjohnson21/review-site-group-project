@@ -1,7 +1,6 @@
 import React from "react"
 
 const CapeTile = props => {
-  let id = {props.cape.id}
   return (
     <div>
       <h1>Name: {props.cape.name}</h1>

@@ -1,10 +1,11 @@
 import React from "react"
 import Enzyme, { mount } from "enzyme"
 import Adapter from "enzyme-adapter-react-16"
-import { BrowserRouter } from "react-router-dom"
-Enzyme.configure({ adapter: new Adapter() })
+import { BrowserRouter, Link } from "react-router-dom"
 
 import CapeTile from "./CapeTile"
+
+Enzyme.configure({ adapter: new Adapter() })
 
 describe("CapeTile", () => {
   let wrapper
@@ -13,15 +14,14 @@ describe("CapeTile", () => {
     wrapper = mount(
       <BrowserRouter>
         <CapeTile
-          id={1}
           name="Super Nick"
           full_name="Nick Alberts"
           gender="Male"
           affiliation="Lornch Ablademy"
-          intelligence={99}
-          strength={5}
-          speed={40}
-          url="https://cdn.bulbagarden.net/upload/thumb/a/a6/Roxanne_Nosepass_Adventures.png/200px-Roxanne_Nosepass_Adventures.png"
+          intelligence= {99}
+          strength= {5}
+          speed= {40}
+          url= "https://cdn.bulbagarden.net/upload/thumb/a/a6/Roxanne_Nosepass_Adventures.png/200px-Roxanne_Nosepass_Adventures.png"
         />
       </BrowserRouter>
     )
@@ -57,10 +57,6 @@ describe("CapeTile", () => {
 
   it('should render an img tag with the url of the cape', () => {
     expect(wrapper.find("img").props()["src"]).toBe("https://cdn.bulbagarden.net/upload/thumb/a/a6/Roxanne_Nosepass_Adventures.png/200px-Roxanne_Nosepass_Adventures.png")
-  })
-
-  it('should have the correct assigned id', () => {
-    expect(wrapper.find(CapeTile).props()["id"]).toBe(1)
   })
 
 })

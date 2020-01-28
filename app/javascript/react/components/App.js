@@ -1,7 +1,8 @@
 import React from 'react'
+import NewCapeForm from './NewCapeForm'
 
 export const App = (props) => {
-  return (<h1>Make It So React</h1>)
+  return (<NewCapeForm />)
 }
 
 export default App

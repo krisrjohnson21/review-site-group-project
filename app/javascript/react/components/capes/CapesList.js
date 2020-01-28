@@ -27,6 +27,7 @@ const CapesList = (props) => {
     return (
       <CapeTile
         key={cape.id}
+        id={cape.id}
         cape={cape}
       />
     )

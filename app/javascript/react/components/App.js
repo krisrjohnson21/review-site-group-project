@@ -1,8 +1,8 @@
-import React from 'react'
-import NewCapeForm from './NewCapeForm'
+import React from 'react';
+import NewCapeForm from './capeform/NewCapeForm';
 
-export const App = (props) => {
-  return (<NewCapeForm />)
-}
+export const App = props => {
+  return <NewCapeForm />;
+};
 
-export default App
+export default App;

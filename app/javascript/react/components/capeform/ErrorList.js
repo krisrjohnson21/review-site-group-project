@@ -12,6 +12,7 @@ const ErrorList = ({ errors }) => {
         </li>
       );
     });
+
     return (
       <div className='callout alert'>
         <ul>{listItems}</ul>

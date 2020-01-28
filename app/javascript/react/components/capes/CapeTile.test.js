@@ -1,12 +1,10 @@
 import React from "react"
 import Enzyme, { mount } from "enzyme"
-
 import Adapter from "enzyme-adapter-react-16"
-
+import { BrowserRouter } from "react-router-dom"
 Enzyme.configure({ adapter: new Adapter() })
 
 import CapeTile from "./CapeTile"
-import { BrowserRouter } from "react-router-dom"
 
 describe("CapeTile", () => {
   let wrapper
@@ -26,7 +24,6 @@ describe("CapeTile", () => {
           url="https://cdn.bulbagarden.net/upload/thumb/a/a6/Roxanne_Nosepass_Adventures.png/200px-Roxanne_Nosepass_Adventures.png"
         />
       </BrowserRouter>
-
     )
   })
 

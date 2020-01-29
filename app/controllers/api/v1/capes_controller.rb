@@ -20,5 +20,3 @@ class Api::V1::CapesController < ApiController
     params.require(:cape).permit(:name,:full_name,:gender,:affiliation,:intelligence,:strength,:speed,:url)
   end
 end
-
-

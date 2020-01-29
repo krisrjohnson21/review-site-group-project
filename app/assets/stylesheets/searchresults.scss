@@ -1,0 +1,73 @@
+.__left {
+   background: #F6F9FC;
+   padding: 10px;
+ }
+ .__right {
+   background: #F2F2F2;
+ }
+ .__right h1 {
+   text-align: center;
+ }
+ label {
+   padding-bottom: 6px;
+ }
+ .__field {
+   border-radius: 4px;
+   height: 40px;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 8px;
+   width: 95%;
+   border: 1px solid rgba(0, 0, 0, 0.25);
+   padding: 2px 6px;
+ }
+ .__row {
+   display: flex;
+   flex-direction: row;
+   background: white;
+   box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+   padding: 20px 10px;
+   border-radius: 8px;
+   margin: 10px 10px 10px 10px;
+ }
+ .__col {
+   flex-grow: 1;
+ }
+ .__col .__header {
+   font-size: 10px;
+ }
+ .__col .__text {
+   font-size: 18px;
+ }
+ .__list {
+   display: flex;
+   flex-direction: column;
+ }
+ .__list-item {
+   box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+   padding: 20px;
+   border-radius: 8px;
+   margin: 5px;
+   border: 1px solid rgba(0, 0, 0, 0.25);
+   list-style-type: none;
+   font-size: 18px;
+   margin: 5px 15px 0 0;
+   transition: ease-in-out 0.3s;
+ }
+ .__list-item:hover {
+   background: #eee;
+   cursor: pointer;
+   margin: 10px 15px 10px 0;
+ }
+ .__list-item a {
+   text-decoration: none;
+   color: #333;
+ }
+ .__list-item {
+   float: right;
+   font-size: 12px;
+   text-align:center;
+ }
+ .__searchbar{
+     text-align:center;
+ }

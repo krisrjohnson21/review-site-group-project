@@ -56,6 +56,7 @@ const NewCapeForm = props => {
     <>
       <form onSubmit={onFormSubmit}>
         <ErrorList errors={errors} />
+        <h5>Create Your Own:</h5>
         <div className='grid-container'>
           <div className='grid-x grid-padding-x'>
             <div className='medium-6 cell'>

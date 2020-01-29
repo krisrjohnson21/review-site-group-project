@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SearchBar = () => {
-  const superheroesUrl = `https://cors-anywhere.herokuapp.com/https://www.superheroapi.com/api.php/2937630366248635/search/${query}`;
+  // const superheroesUrl = `https://cors-anywhere.herokuapp.com/https://www.superheroapi.com/api.php/2937630366248635/search/${query}`;
 
   return (
     <>

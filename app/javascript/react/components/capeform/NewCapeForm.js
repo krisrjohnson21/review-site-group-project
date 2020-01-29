@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import ErrorList from './ErrorList';
 
 const NewCapeForm = props => {
@@ -15,6 +16,8 @@ const NewCapeForm = props => {
   };
   const [form, setForm] = useState(defaultForm);
   const [errors, setErrors] = useState({});
+  const [freshCape, setFreshCape] = useState(null);
+  const [redirect, setRedirect] = useState(false);
 
   const validForSubmission = () => {
     let submitErrors = {};
@@ -45,16 +48,49 @@ const NewCapeForm = props => {
     setForm(defaultForm);
   };
 
-  const onFormSubmit = event => {
+  const formSubmit = event => {
     event.preventDefault();
     if (validForSubmission()) {
-      console.log('form submission');
+      event.preventDefault();
+      addSuperhero();
     }
   };
 
+  function addSuperhero() {
+    fetch('/api/v1/capes', {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(form),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        setRedirect(true);
+        setFreshCape(body.id);
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  if (redirect) {
+    let path = `/superheroes/${freshCape}`;
+    return <Redirect to={path} />;
+  }
+
   return (
     <>
-      <form onSubmit={onFormSubmit}>
+      <form onSubmit={formSubmit}>
         <ErrorList errors={errors} />
         <h5>Create Your Own:</h5>
         <div className='grid-container'>
@@ -132,7 +168,6 @@ const NewCapeForm = props => {
                   id='strength'
                   name='strength'
                   type='number'
-                  placeholder={1}
                   value={form.strength}
                 />
               </label>
@@ -146,7 +181,6 @@ const NewCapeForm = props => {
                   id='intelligence'
                   name='intelligence'
                   type='number'
-                  placeholder={1}
                   value={form.intelligence}
                 />
               </label>
@@ -160,7 +194,6 @@ const NewCapeForm = props => {
                   id='speed'
                   name='speed'
                   type='number'
-                  placeholder={1}
                   value={form.speed}
                 />
               </label>

@@ -16,5 +16,4 @@ const CapeTile = ({ cape }) => {
   )
 }
 
-
 export default CapeTile

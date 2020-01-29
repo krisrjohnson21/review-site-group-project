@@ -28,14 +28,7 @@ const CapesList = (props) => {
       <CapeTile
         key={cape.id}
         id={cape.id}
-        name={cape.name}
-        full_name={cape.full_name}
-        gender={cape.gender}
-        affiliation={cape.affiliation}
-        intelligence={cape.intelligence}
-        strength={cape.strength}
-        speed={cape.speed}
-        url={cape.url}
+        cape={cape}
       />
     )
   })

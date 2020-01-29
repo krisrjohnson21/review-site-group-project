@@ -9,19 +9,23 @@ Enzyme.configure({ adapter: new Adapter() })
 
 describe("CapeTile", () => {
   let wrapper
+  let cape
 
   beforeEach(() => {
+    cape = {
+      name: "Super Nick",
+      full_name: "Nick Alberts",
+      gender: "Male",
+      affiliation: "Lornch Ablademy",
+      intelligence: 99,
+      strength: 5,
+      speed: 40,
+      url: "https://cdn.bulbagarden.net/upload/thumb/a/a6/Roxanne_Nosepass_Adventures.png/200px-Roxanne_Nosepass_Adventures.png"
+    }
     wrapper = mount(
       <BrowserRouter>
         <CapeTile
-          name="Super Nick"
-          full_name="Nick Alberts"
-          gender="Male"
-          affiliation="Lornch Ablademy"
-          intelligence= {99}
-          strength= {5}
-          speed= {40}
-          url= "https://cdn.bulbagarden.net/upload/thumb/a/a6/Roxanne_Nosepass_Adventures.png/200px-Roxanne_Nosepass_Adventures.png"
+          cape={cape}
         />
       </BrowserRouter>
     )

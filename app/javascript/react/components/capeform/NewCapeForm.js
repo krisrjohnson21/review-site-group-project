@@ -139,7 +139,7 @@ const NewCapeForm = props => {
 
             <div className='medium-6 cell'>
               <label>
-                Iintelligence
+                Intelligence
                 <input
                   onChange={onFormChange}
                   id='intelligence'

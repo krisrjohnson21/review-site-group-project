@@ -8,20 +8,25 @@
 </head>
 <body>
   
-  <nav class="top-bar">
-    <h1 class="center"><a href="/">Zero to Hero</a></h1>
 
-    <section class="top-bar-section">
-      <ul class="right">
-        <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+<div class="top-bar" id="responsive-menu">
+  <div class="top-bar-left">
+    <h1 class="menu-text">Zero to Hero</h1>
+
+<a href="/new">Add a Hero</a>
+<a href="/superheroes">All Superheroes</a>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <%- if current_user -%>
+        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
-      </ul>
-    </section>
-  </nav>
+      <li><a href="#0"><%= link_to 'Sign Up', new_user_registration_path %></a></li>
+      <li><a href="#0"><%= link_to 'Sign In', new_user_session_path %></a></li>
+       <%- end -%>
+    </ul>
+  </div>
+</div>
 
   <%- flash.each do |key, value| -%>
     <div class="flash flash-<%= key %>">

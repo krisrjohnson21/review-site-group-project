@@ -3,6 +3,10 @@ import React from 'react';
 const SearchBar = () => {
   // const superheroesUrl = `https://cors-anywhere.herokuapp.com/https://www.superheroapi.com/api.php/2937630366248635/search/${query}`;
 
+  const handleChange = () => {
+    console.log('hi');
+  };
+
   return (
     <>
       <div className='right'>
@@ -10,6 +14,7 @@ const SearchBar = () => {
           <h3>Find an existing Superhero</h3>
           <div className='form-group'>
             <input
+              onChange={handleChange}
               className='searchbar field'
               autoComplete='off'
               type='text'
@@ -24,5 +29,3 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
-
-// onChange={handleChange}

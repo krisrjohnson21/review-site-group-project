@@ -11,7 +11,7 @@ const CapesList = (props) => {
       if (response.ok) {
         return response
       } else {
-        let errorMessage = '${response.status} (${response.statusText})',
+        let errorMessage = `${response.status} (${response.statusText})`,
           error = new Error(errorMessage);
           throw(error)
       }
@@ -20,16 +20,18 @@ const CapesList = (props) => {
     .then(response => {
       setCapes(response)
     })
-    .catch(error => console.error('Error in fetch: ${error.message}'))
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
 
   const capesTiles = capes.map((cape) => {
+    let id = cape.id
     return (
-      <CapeTile
-        key={cape.id}
-        id={cape.id}
-        cape={cape}
-      />
+      <Link to={`/superheroes/${id}`} key={cape.id}>
+        <CapeTile
+          id={cape.id}
+          cape={cape}
+          />
+      </Link>
     )
   })
 

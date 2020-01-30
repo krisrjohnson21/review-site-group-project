@@ -80,7 +80,6 @@ const NewCapeForm = props => {
       .then(response => response.json())
       .then(body => {
         if(body.id){
-          console.log(body)
           setRedirect(true);
           setFreshCape(body.id);
         }

@@ -14,6 +14,8 @@ const SearchBar = () => {
   const superheroesUrl = `https://cors-anywhere.herokuapp.com/https://www.superheroapi.com/api.php/${key}/search/${query}`;
 
   const handleChange = event => {
+    console.log(process.env.REACT_APP_API_KEY)
+
     setQuery(event.target.value);
   };
 

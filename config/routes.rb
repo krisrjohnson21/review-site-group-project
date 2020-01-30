@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :capes, only: [:index, :create, :new]
+      resources :capes, only: [:index, :create, :new, :show]
       post '/add-from-external', to: 'capes#from_api'
     end
   end

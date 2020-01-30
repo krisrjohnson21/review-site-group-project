@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import CapeTile from './CapeTile'
 
-const CapesList = (props) => {
-  const [capes, setCapes] = useState([])
+import CapeShow from './CapeShow'
+
+const CapeShowContainer = (props) => {
+  const [cape, setCape] = useState(0)
+
 
   useEffect(() => {
-    fetch("/api/v1/capes.json")
+    let capeId = props.match.params.id
+    fetch(`/api/v1/capes/${capeId}`)
     .then(response => {
       if (response.ok) {
         return response
@@ -18,31 +21,18 @@ const CapesList = (props) => {
     })
     .then(response => response.json())
     .then(response => {
-      setCapes(response)
+      setCape(response)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
 
-  const capesTiles = capes.map((cape) => {
-    let id = cape.id
-    return (
-      <Link to={`/superheroes/${id}`} key={cape.id}>
-        <CapeTile
-          id={cape.id}
-          cape={cape}
-          />
-      </Link>
-    )
-  })
-
   return(
-    <div>
-      <h1>Superheroes</h1>
-      <ul>
-        {capesTiles}
-      </ul>
+    <div className="text-center">
+      <CapeShow
+        capeData={cape}
+      />
     </div>
   )
 }
 
-export default CapesList;
+export default CapeShowContainer;

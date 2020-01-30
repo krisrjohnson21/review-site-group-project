@@ -26,12 +26,12 @@ RSpec.describe Api::V1::CapesController, type: :controller do
   describe "GET#index" do
     it "should return the capes and their names" do
       get :index
-      returned_json = JSON.parse(response.body)
+      returned_json = JSON.parse(response.capes)
+      binding.pry
 
       expect(response.status).to eq 200
       expect(response.content_type).to eq("application/json")
 
-      expect(returned_json.length).to be 2
 
       expect(returned_json[0].length).to be 11
       expect(returned_json[1].length).to be 11

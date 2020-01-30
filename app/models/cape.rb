@@ -1,7 +1,7 @@
 class Cape < ApplicationRecord
   has_many :reviews
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :full_name, presence: true
   validates :gender, presence: true
   validates :affiliation, presence: true

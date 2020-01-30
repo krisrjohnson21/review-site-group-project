@@ -1,10 +1,21 @@
 class Api::V1::CapesController < ApiController
+
   def index
     render json: Cape.all
   end
 
+  def from_api
+    check_db = Cape.find_by name: cape_params[:name]
+    if check_db
+      render json: check_db[:id]
+    else
+      cape = Cape.create(cape_params)
+      render json: cape
+    end
+  end
 
   def create
+
     cape = Cape.new(cape_params)
 
     if cape.save

@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
+
 
 <div class="top-bar" id="responsive-menu">
   <div class="top-bar-left">
@@ -37,8 +37,8 @@
   <%= yield %>
 
   <%= javascript_include_tag 'application' %>
-  
-  <%- if Rails.env.development? || Rails.env.test? -%> 
+
+  <%- if Rails.env.development? || Rails.env.test? -%>
     <%= javascript_tag do %>
       window.railsEnv = '<%= Rails.env %>'
     <%- end -%>

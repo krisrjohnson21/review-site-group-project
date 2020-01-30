@@ -18,6 +18,8 @@ const NewCapeForm = props => {
   const [errors, setErrors] = useState({});
   const [freshCape, setFreshCape] = useState(null);
   const [redirect, setRedirect] = useState(false);
+  const [duplicateError, setDuplicateError] = useState("")
+
 
   const validForSubmission = () => {
     let submitErrors = {};
@@ -77,46 +79,55 @@ const NewCapeForm = props => {
       })
       .then(response => response.json())
       .then(body => {
-        setRedirect(true);
-        setFreshCape(body.id);
+        if(body.id){
+          console.log(body)
+          setRedirect(true);
+          setFreshCape(body.id);
+        }
+
+        setDuplicateError(body.errors[0])
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  if (redirect) {
+  if (redirect && freshCape !== null) {
     let path = `/superheroes/${freshCape}`;
     return <Redirect to={path} />;
   }
 
   return (
     <>
+      <div>
+        <h5>{duplicateError}</h5>
+      </div>
+
       <form onSubmit={formSubmit}>
         <ErrorList errors={errors} />
-        <h5>Create Your Own:</h5>
+        <h4>Create Your Custom Superhero:</h4>
         <div className='grid-container'>
           <div className='grid-x grid-padding-x'>
             <div className='medium-6 cell'>
               <label>
-                Name
+                Alias
                 <input
                   onChange={onFormChange}
                   id='name'
                   name='name'
                   type='text'
-                  placeholder='Batman'
+                  placeholder='Blobsweat'
                   value={form.name}
                 />
               </label>
             </div>
             <div className='medium-6 cell'>
               <label>
-                Full Name
+                Real Name
                 <input
                   onChange={onFormChange}
                   id='full_name'
                   name='full_name'
                   type='text'
-                  placeholder='Bruce Wayne'
+                  placeholder='Rob Huff'
                   value={form.full_name}
                 />
               </label>
@@ -142,7 +153,7 @@ const NewCapeForm = props => {
                   id='affiliation'
                   name='affiliation'
                   type='text'
-                  placeholder='Justice League'
+                  placeholder='Launch Academy'
                   value={form.affiliation}
                 />
               </label>
@@ -155,7 +166,7 @@ const NewCapeForm = props => {
                   id='url'
                   name='url'
                   type='text'
-                  placeholder='www.batmanimages.com'
+                  placeholder='www.rob.com/images.jpeg'
                   value={form.url}
                 />
               </label>

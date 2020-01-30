@@ -32,19 +32,7 @@ describe("CapeTile", () => {
   })
 
   it('should render an h1 tag with the name of the cape', () => {
-    expect(wrapper.find("h1").text()).toBe("Name: Super Nick")
-  })
-
-  it('should render a h2 tag with the full name of the cape', () => {
-    expect(wrapper.find("h2").text()).toBe("Full Name: Nick Alberts")
-  })
-
-  it('should render a h3 tag with the gender of the cape', () => {
-    expect(wrapper.find("h3").text()).toBe("Gender: Male")
-  })
-
-  it('should render a h4 tag with the affiliation of the cape', () => {
-    expect(wrapper.find("h4").text()).toBe("Affiliation: Lornch Ablademy")
+    expect(wrapper.find("h1").text()).toBe("Super Nick")
   })
 
   it('should render a h5 tag with the intelligence of the cape', () => {

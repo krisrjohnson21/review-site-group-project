@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root 'static_pages#index'
   get '/superheroes', to: "static_pages#index"
+  get '/superheroes/:id', to: "static_pages#index"
   devise_for :users
 
   namespace :api do
     namespace :v1 do
-      resources :capes, only: [:index]
+      resources :capes, only: [:index, :show]
     end
   end
 end

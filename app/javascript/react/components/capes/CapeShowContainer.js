@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import CapeShow from './CapeShow'
+import ReviewFormContainer from '../reviews/ReviewFormContainer'
 
 const CapeShowContainer = (props) => {
   const [cape, setCape] = useState(0)
@@ -29,7 +30,7 @@ const CapeShowContainer = (props) => {
   useEffect(() => {
     let capeId = props.match.params.id
     let reviewId = props.match.params.id
-    fetch(`/api/v1/capes/${capeId}/reviews/${reviewId}`)
+    fetch(`/api/v1/capes/${capeId}/reviews/${capeId}`)
     .then(response => {
       if (response.ok) {
         return response
@@ -46,6 +47,38 @@ const CapeShowContainer = (props) => {
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
 
+  const addNewReview = formPayload => {
+    let capeId = props.match.params.id
+    fetch(`/api/v1/capes/${capeId}/reviews`, {
+      credentials: "same-origin",
+      method: "POST",
+      body: JSON.stringify(formPayload),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+          throw(error)
+      }
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(newReviewBody => {
+      setReviews([
+        ...reviews,
+        newReviewBody
+      ])
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }
+
   const reviewList = reviews.map((review) => {
     return(
       <div>
@@ -57,14 +90,26 @@ const CapeShowContainer = (props) => {
   })
 
   return(
+    <>
     <div className="text-center">
       <CapeShow
+        key={cape.id}
         capeData={cape}
-      />
-    <hr />
-    <h2><strong>Reviews for {cape.name}</strong></h2>
+        />
+      <hr />
+      <h2><strong>Reviews for {cape.name}</strong></h2>
       {reviewList}
     </div>
+
+    <div>
+      <hr />
+      <h2 className="text-center"><strong>Add a New Review for {cape.name}</strong></h2>
+      <ReviewFormContainer
+        addNewReview={addNewReview}
+        reviews={reviews}
+      />
+    </div>
+    </>
   )
 }
 

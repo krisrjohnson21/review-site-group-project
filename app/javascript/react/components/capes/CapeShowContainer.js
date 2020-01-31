@@ -5,7 +5,7 @@ import CapeShow from './CapeShow'
 import ReviewFormContainer from '../reviews/ReviewFormContainer'
 
 const CapeShowContainer = (props) => {
-  const [cape, setCape] = useState(0)
+  const [cape, setCape] = useState({})
   const [reviews, setReviews] = useState([])
 
   useEffect(() => {
@@ -23,33 +23,14 @@ const CapeShowContainer = (props) => {
     .then(response => response.json())
     .then(response => {
       setCape(response.cape)
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`))
-  }, [])
-
-  useEffect(() => {
-    let capeId = props.match.params.id
-    let reviewId = props.match.params.id
-    fetch(`/api/v1/capes/${capeId}/reviews/${capeId}`)
-    .then(response => {
-      if (response.ok) {
-        return response
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage);
-          throw(error)
-      }
-    })
-    .then(response => response.json())
-    .then(response => {
-      setReviews(response.reviews)
+      setReviews(response.cape.reviews)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
 
   const addNewReview = formPayload => {
     let capeId = props.match.params.id
-    fetch(`/api/v1/capes/${capeId}/reviews`, {
+    fetch(`/api/v1/capes/${capeId}/reviews/`, {
       credentials: "same-origin",
       method: "POST",
       body: JSON.stringify(formPayload),
@@ -73,12 +54,11 @@ const CapeShowContainer = (props) => {
     .then(newReviewBody => {
       setReviews([
         ...reviews,
-        newReviewBody
+        newReviewBody.review
       ])
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
-
   const reviewList = reviews.map((review) => {
     return(
       <div>
@@ -106,7 +86,7 @@ const CapeShowContainer = (props) => {
       <h2 className="text-center"><strong>Add a New Review for {cape.name}</strong></h2>
       <ReviewFormContainer
         addNewReview={addNewReview}
-        reviews={reviews}
+        reviews={cape.reviews}
       />
     </div>
     </>

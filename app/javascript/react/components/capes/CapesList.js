@@ -18,7 +18,7 @@ const CapesList = (props) => {
     })
     .then(response => response.json())
     .then(response => {
-      setCapes(response)
+      setCapes(response.capes)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])

@@ -5,7 +5,7 @@ import CapeShow from './CapeShow'
 
 const CapeShowContainer = (props) => {
   const [cape, setCape] = useState(0)
-
+  const [reviews, setReviews] = useState([])
 
   useEffect(() => {
     let capeId = props.match.params.id
@@ -21,16 +21,49 @@ const CapeShowContainer = (props) => {
     })
     .then(response => response.json())
     .then(response => {
-      setCape(response)
+      setCape(response.cape)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
+
+  useEffect(() => {
+    let capeId = props.match.params.id
+    let reviewId = props.match.params.id
+    fetch(`/api/v1/capes/${capeId}/reviews/${reviewId}`)
+    .then(response => {
+      if (response.ok) {
+        return response
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+          throw(error)
+      }
+    })
+    .then(response => response.json())
+    .then(response => {
+      setReviews(response.reviews)
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }, [])
+
+  const reviewList = reviews.map((review) => {
+    return(
+      <div>
+        <h4 id="reviewer"><strong>Reviewer Name: </strong>{review.user_full_name}</h4>
+        <h4 id="review"><strong>Rating: </strong>{review.rating} <strong>| Review: </strong>{review.body}</h4>
+        <br />
+      </div>
+    )
+  })
 
   return(
     <div className="text-center">
       <CapeShow
         capeData={cape}
       />
+    <hr />
+    <h2><strong>Reviews for {cape.name}</strong></h2>
+      {reviewList}
     </div>
   )
 }

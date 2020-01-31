@@ -1,5 +1,4 @@
 require "rails_helper"
-
 RSpec.describe Api::V1::CapesController, type: :controller do
   let!(:first_cape) { Cape.create(
     name: "Trogdor",
@@ -11,7 +10,6 @@ RSpec.describe Api::V1::CapesController, type: :controller do
     speed: 80,
     url: "https://lh5.googleusercontent.com/proxy/X3_Io8z31Fim6hdOC47CIAOM4iBAAJQ5XKa9jw14gwbgqdVjA-lc-dzyxKdkqWsn52jtOIkFc8fIAMz67e7NfUfiKF7VR30uZ--sFoHxvG8tt1upS23ecWnZZ2Y"
   ) }
-
   let!(:second_cape) { Cape.create(
     name: "MechaBlart",
     full_name: "The Artist Formerly Known As Paul Blart",
@@ -22,12 +20,10 @@ RSpec.describe Api::V1::CapesController, type: :controller do
     speed: 99,
     url: "https://vignette1.wikia.nocookie.net/es.futurama/images/1/19/Ulr.png/revision/latest?cb=20130123214147"
   ) }
-
   describe "GET#index" do
     it "should return the capes and their names" do
       get :index
       returned_json = JSON.parse(response.body)
-
       expect(response.status).to eq 200
       expect(response.content_type).to eq("application/json")
 

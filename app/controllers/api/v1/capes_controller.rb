@@ -8,7 +8,6 @@ class Api::V1::CapesController < ApiController
     render json: Cape.find(params[:id])
   end
 
- 
  def create
   cape = Cape.new(cape_params)
     if cape.save

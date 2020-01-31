@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 2020_01_30_142618) do
     t.string "url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_capes_on_name", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|

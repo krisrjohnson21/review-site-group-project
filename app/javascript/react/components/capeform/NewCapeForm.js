@@ -37,28 +37,7 @@ const NewCapeForm = () => {
     return _.isEmpty(submitErrors);
   };
 
-  const onFormChange = event => {
-    const key = event.currentTarget.id;
-    const value = event.currentTarget.value;
-    setForm({
-      ...form,
-      [key]: value
-    });
-  };
-
-  const clearForm = () => {
-    setForm(defaultForm);
-  };
-
-  const formSubmit = event => {
-    event.preventDefault();
-    if (validForSubmission()) {
-      event.preventDefault();
-      addSuperhero();
-    }
-  };
-
-  function addSuperhero() {
+  const addSuperhero = () => {
     fetch('/api/v1/capes', {
       credentials: 'same-origin',
       method: 'POST',
@@ -86,7 +65,28 @@ const NewCapeForm = () => {
         setDuplicateError(body.errors[0]);
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
-  }
+  };
+
+  const onFormChange = event => {
+    const key = event.currentTarget.id;
+    const value = event.currentTarget.value;
+    setForm({
+      ...form,
+      [key]: value
+    });
+  };
+
+  const clearForm = () => {
+    setForm(defaultForm);
+  };
+
+  const formSubmit = event => {
+    event.preventDefault();
+    if (validForSubmission()) {
+      event.preventDefault();
+      addSuperhero();
+    }
+  };
 
   if (redirect) {
     let path = `/superheroes/${freshCape}`;
@@ -112,7 +112,7 @@ const NewCapeForm = () => {
                   id='name'
                   name='name'
                   type='text'
-                  placeholder='Blobsweat'
+                  placeholder='MegaMan'
                   value={form.name}
                 />
               </label>
@@ -151,7 +151,7 @@ const NewCapeForm = () => {
                   id='affiliation'
                   name='affiliation'
                   type='text'
-                  placeholder='Launch Academy'
+                  placeholder='Planet Krypton'
                   value={form.affiliation}
                 />
               </label>
@@ -164,7 +164,7 @@ const NewCapeForm = () => {
                   id='url'
                   name='url'
                   type='text'
-                  placeholder='www.rob.com/images.jpeg'
+                  placeholder='www.planetkrypton.com/images/megaman.jpeg'
                   value={form.url}
                 />
               </label>

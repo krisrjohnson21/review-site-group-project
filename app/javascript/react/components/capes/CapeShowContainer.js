@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import CapeShow from './CapeShow'
 import ReviewFormContainer from '../reviews/ReviewFormContainer'
+import ReviewTile from '../reviews/ReviewTile'
 
 const CapeShowContainer = (props) => {
   const [cape, setCape] = useState({})
@@ -59,13 +60,17 @@ const CapeShowContainer = (props) => {
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
+  
   const reviewList = reviews.map((review) => {
+    let id = review.id
     return(
-      <div>
-        <h4 id="reviewer"><strong>Reviewer Name: </strong>{review.user_full_name}</h4>
-        <h4 id="review"><strong>Rating: </strong>{review.rating} <strong>| Review: </strong>{review.body}</h4>
-        <br />
-      </div>
+      <ReviewTile
+        key={review.id}
+        id={review.id}
+        userName={review.user_full_name}
+        rating={review.rating}
+        body={review.body}
+      />
     )
   })
 

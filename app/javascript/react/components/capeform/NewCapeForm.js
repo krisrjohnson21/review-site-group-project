@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import ErrorList from './ErrorList';
 
-const NewCapeForm = props => {
+const NewCapeForm = () => {
   const defaultForm = {
     name: '',
     full_name: '',
@@ -14,12 +14,12 @@ const NewCapeForm = props => {
     speed: 1,
     url: ''
   };
+
   const [form, setForm] = useState(defaultForm);
   const [errors, setErrors] = useState({});
   const [freshCape, setFreshCape] = useState(null);
   const [redirect, setRedirect] = useState(false);
-  const [duplicateError, setDuplicateError] = useState("")
-
+  const [duplicateError, setDuplicateError] = useState('');
 
   const validForSubmission = () => {
     let submitErrors = {};
@@ -79,17 +79,16 @@ const NewCapeForm = props => {
       })
       .then(response => response.json())
       .then(body => {
-        if(body.id){
-          setRedirect(true);
+        if (body.id) {
           setFreshCape(body.id);
+          setRedirect(true);
         }
-
-        setDuplicateError(body.errors[0])
+        setDuplicateError(body.errors[0]);
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  if (redirect && freshCape !== null) {
+  if (redirect) {
     let path = `/superheroes/${freshCape}`;
     return <Redirect to={path} />;
   }

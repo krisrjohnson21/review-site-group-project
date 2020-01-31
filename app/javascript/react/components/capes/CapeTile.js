@@ -5,10 +5,10 @@ const CapeTile = ({ cape }) => {
   return (
     <div>
       <img src={url} />
-      <h1>{name}</h1>
-      <h5>Intelligence: {intelligence}</h5>
-      <h6>Strength: {strength}</h6>
-      <p>Speed: {speed}</p>
+      <h1 id="name">{name}</h1>
+      <h4 id="intelligence">Intelligence: {intelligence}</h4>
+      <h4 id="strength">Strength: {strength}</h4>
+      <h4 id="speed">Speed: {speed}</h4>
     </div>
   )
 }

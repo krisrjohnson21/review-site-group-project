@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import CapeShow from './CapeShow'
+import ReviewFormContainer from '../reviews/ReviewFormContainer'
+import ReviewTile from '../reviews/ReviewTile'
 
 const CapeShowContainer = (props) => {
-  const [cape, setCape] = useState(0)
+  const [cape, setCape] = useState({})
   const [reviews, setReviews] = useState([])
 
   useEffect(() => {
@@ -22,14 +24,22 @@ const CapeShowContainer = (props) => {
     .then(response => response.json())
     .then(response => {
       setCape(response.cape)
+      setReviews(response.cape.reviews)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
 
-  useEffect(() => {
+  const addNewReview = formPayload => {
     let capeId = props.match.params.id
-    let reviewId = props.match.params.id
-    fetch(`/api/v1/capes/${capeId}/reviews/${reviewId}`)
+    fetch(`/api/v1/capes/${capeId}/reviews/`, {
+      credentials: "same-origin",
+      method: "POST",
+      body: JSON.stringify(formPayload),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
     .then(response => {
       if (response.ok) {
         return response
@@ -39,32 +49,52 @@ const CapeShowContainer = (props) => {
           throw(error)
       }
     })
-    .then(response => response.json())
     .then(response => {
-      setReviews(response.reviews)
+      return response.json()
+    })
+    .then(newReviewBody => {
+      setReviews([
+        ...reviews,
+        newReviewBody.review
+      ])
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
-  }, [])
+  }
 
   const reviewList = reviews.map((review) => {
+    let id = review.id
     return(
-      <div>
-        <h4 id="reviewer"><strong>Reviewer Name: </strong>{review.user_full_name}</h4>
-        <h4 id="review"><strong>Rating: </strong>{review.rating} <strong>| Review: </strong>{review.body}</h4>
-        <br />
-      </div>
+      <ReviewTile
+        key={review.id}
+        id={review.id}
+        userName={review.userFullName}
+        rating={review.rating}
+        body={review.body}
+      />
     )
   })
 
   return(
+    <>
     <div className="text-center">
       <CapeShow
+        key={cape.id}
         capeData={cape}
-      />
-    <hr />
-    <h2><strong>Reviews for {cape.name}</strong></h2>
+        />
+      <hr />
+      <h2><strong>Reviews for {cape.name}</strong></h2>
       {reviewList}
     </div>
+
+    <div>
+      <hr />
+      <h2 className="text-center"><strong>Add a New Review for {cape.name}</strong></h2>
+      <ReviewFormContainer
+        addNewReview={addNewReview}
+        reviews={cape.reviews}
+      />
+    </div>
+    </>
   )
 }
 

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import ErrorList from './ErrorList';
 
-const NewCapeForm = () => {
+const NewCapeForm = props => {
   const defaultForm = {
     name: '',
     full_name: '',
@@ -14,12 +14,13 @@ const NewCapeForm = () => {
     speed: 1,
     url: ''
   };
-
   const [form, setForm] = useState(defaultForm);
   const [errors, setErrors] = useState({});
   const [freshCape, setFreshCape] = useState(null);
   const [redirect, setRedirect] = useState(false);
-  const [duplicateError, setDuplicateError] = useState('');
+  const [duplicateError, setDuplicateError] = useState("")
+  const [loginError, setLoginError] = useState("")
+
 
   const validForSubmission = () => {
     let submitErrors = {};
@@ -35,36 +36,6 @@ const NewCapeForm = () => {
     });
     setErrors(submitErrors);
     return _.isEmpty(submitErrors);
-  };
-
-  const addSuperhero = () => {
-    fetch('/api/v1/capes', {
-      credentials: 'same-origin',
-      method: 'POST',
-      body: JSON.stringify(form),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        if (body.id) {
-          setFreshCape(body.id);
-          setRedirect(true);
-        }
-        setDuplicateError(body.errors[0]);
-      })
-      .catch(error => console.error(`Error in fetch: ${error.message}`));
   };
 
   const onFormChange = event => {
@@ -88,7 +59,43 @@ const NewCapeForm = () => {
     }
   };
 
-  if (redirect) {
+  function addSuperhero() {
+    fetch('/api/v1/capes', {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(form),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        if(body.id){
+          setRedirect(true);
+          setFreshCape(body.id);
+        }
+
+        setDuplicateError(body.errors[0])
+      })
+      .catch(error => {
+        if (error.message === "401 (Unauthorized)"){
+          setLoginError("Signup or Log In First to create your own hero")
+        }
+        console.error(`Error in fetch: ${error.message}`);
+      })
+  }
+
+  if (redirect && freshCape !== null) {
     let path = `/superheroes/${freshCape}`;
     return <Redirect to={path} />;
   }
@@ -97,6 +104,7 @@ const NewCapeForm = () => {
     <>
       <div>
         <h5>{duplicateError}</h5>
+        <h5>{loginError}</h5>
       </div>
 
       <form onSubmit={formSubmit}>
@@ -112,7 +120,7 @@ const NewCapeForm = () => {
                   id='name'
                   name='name'
                   type='text'
-                  placeholder='MegaMan'
+                  placeholder='Blobsweat'
                   value={form.name}
                 />
               </label>
@@ -151,7 +159,7 @@ const NewCapeForm = () => {
                   id='affiliation'
                   name='affiliation'
                   type='text'
-                  placeholder='Planet Krypton'
+                  placeholder='Launch Academy'
                   value={form.affiliation}
                 />
               </label>
@@ -164,7 +172,7 @@ const NewCapeForm = () => {
                   id='url'
                   name='url'
                   type='text'
-                  placeholder='www.planetkrypton.com/images/megaman.jpeg'
+                  placeholder='www.rob.com/images.jpeg'
                   value={form.url}
                 />
               </label>

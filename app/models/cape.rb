@@ -1,5 +1,6 @@
 class Cape < ApplicationRecord
   has_many :reviews
+  belongs_to :user
 
   validates :name, presence: true, uniqueness: true
   validates :full_name, presence: true

@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2020_01_30_142618) do
   enable_extension "plpgsql"
 
   create_table "capes", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "name", null: false
     t.string "full_name", null: false
     t.string "gender", null: false
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_01_30_142618) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_capes_on_name", unique: true
+    t.index ["user_id"], name: "index_capes_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|

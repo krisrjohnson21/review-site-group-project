@@ -13,7 +13,7 @@ describe("CapeShow", () => {
   beforeEach(() => {
     capeData = {
       name: "Nedzilla",
-      full_name: "Debbie Lehman",
+      fullName: "Debbie Lehman",
       gender: "Male",
       affiliation: "Starbucks Galactica",
       intelligence: 100,

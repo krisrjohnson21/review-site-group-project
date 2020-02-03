@@ -64,13 +64,11 @@
 @import url('https://fonts.googleapis.com/css?family=Changa:300,400,500,600,700&display=swap');
 
 //-----custom colors-----/////
-
 $custom-gold: rgba(252, 214, 0, 1);
 $custom-black: rgba(29, 30, 24, 1);
 $custom-red: rgba(242, 87, 87, 1);
 $custom-navy: rgba(49, 61, 90, 1);
-$custom-grey: #fafafa;
-
+$cream: #fcfae3;
 // 1. Global
 // ---------
 
@@ -89,8 +87,8 @@ $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #0a0a0a;
 $white: #fefefe;
-$body-background: $white;
-$body-font-color: $black;
+$body-background: $cream;
+$body-font-color: $custom-navy;
 $body-font-family: 'Changa', sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
@@ -203,7 +201,7 @@ $paragraph-lineheight: 1.6;
 $paragraph-margin-bottom: 1rem;
 $paragraph-text-rendering: optimizeLegibility;
 $enable-code-inline: true;
-$anchor-color: $primary-color;
+$anchor-color: $custom-red;
 $anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
 $anchor-text-decoration: none;
 $anchor-text-decoration-hover: none;
@@ -241,7 +239,7 @@ $subheader-font-weight: $global-weight-normal;
 $subheader-margin-top: 0.2rem;
 $subheader-margin-bottom: 0.5rem;
 $stat-font-size: 2.5rem;
-$cite-color: $dark-gray;
+$cite-color: $custom-navy;
 $cite-font-size: rem-calc(13);
 $cite-pseudo-content: '\2014 \0020';
 $code-color: $black;
@@ -873,7 +871,7 @@ $tooltip-radius: $global-radius;
 // -----------
 
 $topbar-padding: 0.5rem;
-$topbar-background: $light-gray;
+$topbar-background: $custom-navy;
 $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 0.5rem 1rem 0.5rem 0;
 $topbar-input-width: 200px;

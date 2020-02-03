@@ -1,71 +1,75 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import Review from '../reviewcomponents/Review';
+import CapeShow from './CapeShow';
 
-import CapeShow from './CapeShow'
+const CapeShowContainer = ({ match }) => {
+  const [cape, setCape] = useState(0);
+  const [reviews, setReviews] = useState([]);
+  const capeId = match.params.id;
 
-const CapeShowContainer = (props) => {
-  const [cape, setCape] = useState(0)
-  const [reviews, setReviews] = useState([])
+  const handleVote = () => {
+    console.log('hi');
+  };
 
   useEffect(() => {
-    let capeId = props.match.params.id
     fetch(`/api/v1/capes/${capeId}`)
-    .then(response => {
-      if (response.ok) {
-        return response
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage);
-          throw(error)
-      }
-    })
-    .then(response => response.json())
-    .then(response => {
-      setCape(response.cape)
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`))
-  }, [])
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(response => {
+        setCape(response.cape);
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }, []);
 
   useEffect(() => {
-    let capeId = props.match.params.id
-    let reviewId = props.match.params.id
+    let capeId = match.params.id;
+    let reviewId = match.params.id;
     fetch(`/api/v1/capes/${capeId}/reviews/${reviewId}`)
-    .then(response => {
-      if (response.ok) {
-        return response
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage);
-          throw(error)
-      }
-    })
-    .then(response => response.json())
-    .then(response => {
-      setReviews(response.reviews)
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`))
-  }, [])
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(response => {
+        setReviews(response.reviews);
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }, []);
 
-  const reviewList = reviews.map((review) => {
-    return(
-      <div>
-        <h4 id="reviewer"><strong>Reviewer Name: </strong>{review.user_full_name}</h4>
-        <h4 id="review"><strong>Rating: </strong>{review.rating} <strong>| Review: </strong>{review.body}</h4>
-        <br />
-      </div>
-    )
-  })
-
-  return(
-    <div className="text-center">
-      <CapeShow
-        capeData={cape}
+  const reviewList = reviews.map(review => {
+    return (
+      <Review
+        key={review.id}
+        id={review.id}
+        count={review.vote}
+        handleVote={handleVote}
+        fullName={review.user_full_name}
+        rating={review.rating}
+        body={review.body}
       />
-    <hr />
-    <h2><strong>Reviews for {cape.name}</strong></h2>
-      {reviewList}
+    );
+  });
+
+  return (
+    <div className='text-center'>
+      <CapeShow capeData={cape} />
+      <hr />
+      <div className='__list'>{reviewList}</div>
     </div>
-  )
-}
+  );
+};
 
 export default CapeShowContainer;

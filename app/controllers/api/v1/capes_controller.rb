@@ -1,7 +1,9 @@
 class Api::V1::CapesController < ApiController
 
   def index
+
     render json: Cape.all
+
   end
 
   def show
@@ -9,7 +11,9 @@ class Api::V1::CapesController < ApiController
   end
 
  def create
+  user = current_user.id 
   cape = Cape.new(cape_params)
+  cape.user_id = user
     if cape.save
      render json: cape
     else
@@ -20,6 +24,6 @@ class Api::V1::CapesController < ApiController
  private
  
  def cape_params
-   params.require(:cape).permit(:name,:full_name,:gender,:affiliation,:intelligence,:strength,:speed,:url)
+   params.permit(:name,:full_name,:gender,:affiliation,:intelligence,:strength,:speed,:url)
  end
 end

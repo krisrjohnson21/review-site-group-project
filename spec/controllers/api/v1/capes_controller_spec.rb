@@ -51,4 +51,12 @@ RSpec.describe Api::V1::CapesController, type: :controller do
       expect(returned_json["capes"][1]["url"]).to eq "https://vignette1.wikia.nocookie.net/es.futurama/images/1/19/Ulr.png/revision/latest?cb=20130123214147"
     end
   end
+
+  describe "DELETE#destroy" do
+    it "deletes a cape" do
+      prev_count = Cape.count
+      Cape.destroy(first_cape.id)
+      expect(Cape.count).to eq(prev_count - 1)
+    end
+  end
 end

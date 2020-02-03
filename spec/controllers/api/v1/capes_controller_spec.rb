@@ -26,7 +26,7 @@ RSpec.describe Api::V1::CapesController, type: :controller do
       returned_json = JSON.parse(response.body)
       expect(response.status).to eq 200
       expect(response.content_type).to eq("application/json")
-      binding.pry
+
       expect(returned_json["capes"].length).to be 2
 
       expect(returned_json["capes"][0].length).to be 10

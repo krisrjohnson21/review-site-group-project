@@ -60,14 +60,14 @@ const CapeShowContainer = (props) => {
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
-  
+
   const reviewList = reviews.map((review) => {
     let id = review.id
     return(
       <ReviewTile
         key={review.id}
         id={review.id}
-        userName={review.user_full_name}
+        userName={review.userFullName}
         rating={review.rating}
         body={review.body}
       />

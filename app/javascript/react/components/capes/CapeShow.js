@@ -2,13 +2,13 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 const CapeShow = ({ capeData }) => {
-  let { name, full_name, gender, affiliation, intelligence, strength, speed, url } = capeData
+  let { name, fullName, gender, affiliation, intelligence, strength, speed, url } = capeData
 
   return (
     <div>
       <h1><strong>Detail page for {name}</strong></h1>
       <img src={url} />
-      <h4 id="full-name"><strong>Full Name: </strong>{full_name}</h4>
+      <h4 id="full-name"><strong>Full Name: </strong>{fullName}</h4>
       <h4 id="gender"><strong>Gender: </strong>{gender}</h4>
       <h4 id="affiliation"><strong>Affiliation: </strong>{affiliation}</h4>
       <br />

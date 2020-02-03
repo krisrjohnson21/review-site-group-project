@@ -18,8 +18,8 @@ class Api::V1::CapesController < ApiController
  end
 
  private
- 
+
  def cape_params
-   params.require(:cape).permit(:name,:full_name,:gender,:affiliation,:intelligence,:strength,:speed,:url)
+   params.require(:cape).permit(:name,:fullName,:gender,:affiliation,:intelligence,:strength,:speed,:url)
  end
 end

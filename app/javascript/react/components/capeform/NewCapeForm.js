@@ -6,7 +6,7 @@ import ErrorList from './ErrorList';
 const NewCapeForm = () => {
   const defaultForm = {
     name: '',
-    full_name: '',
+    fullName: '',
     gender: '',
     affiliation: '',
     intelligence: 1,
@@ -122,11 +122,11 @@ const NewCapeForm = () => {
                 Real Name
                 <input
                   onChange={onFormChange}
-                  id='full_name'
-                  name='full_name'
+                  id='fullName'
+                  name='fullName'
                   type='text'
                   placeholder='Rob Huff'
-                  value={form.full_name}
+                  value={form.fullName}
                 />
               </label>
             </div>

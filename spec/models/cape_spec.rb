@@ -6,8 +6,8 @@ describe Cape do
   it { should have_valid(:name).when("a name") }
   it { should_not have_valid(:name).when(nil, "") }
 
-  it { should have_valid(:fullName).when("a full name") }
-  it { should_not have_valid(:fullName).when(nil, "") }
+  it { should have_valid(:full_name).when("a full name") }
+  it { should_not have_valid(:full_name).when(nil, "") }
 
   it { should have_valid(:gender).when("a gender") }
   it { should_not have_valid(:gender).when(nil, "") }

@@ -119,7 +119,7 @@ const NewCapeForm = props => {
                   id='name'
                   name='name'
                   type='text'
-                  placeholder='Blobsweat'
+                  placeholder='Megaman'
                   value={form.name}
                 />
               </label>
@@ -158,7 +158,7 @@ const NewCapeForm = props => {
                   id='affiliation'
                   name='affiliation'
                   type='text'
-                  placeholder='Launch Academy'
+                  placeholder='Planet Krypton'
                   value={form.affiliation}
                 />
               </label>
@@ -171,7 +171,7 @@ const NewCapeForm = props => {
                   id='url'
                   name='url'
                   type='text'
-                  placeholder='www.rob.com/images.jpeg'
+                  placeholder='www.megaman.com/images.jpeg'
                   value={form.url}
                 />
               </label>

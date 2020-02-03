@@ -2,9 +2,9 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 
-u1 = User.create(first_name: "Harry", last_name: "Potter", email: "wizard@hogwartz.com", password: "leviosa")
-u2 = User.create(first_name: "Kim", last_name: "Possible", email: "not@spy.com", password: "rufus123")
-u3 = User.create(first_name: "Everett", last_name: "Yoooow", email: "hoodie@vest.com", password: "spillsdrink")
+u1 = User.create(first_name: "Harry", last_name: "Potter", email: "wizard@hogwartz.com", password: "leviosa", role: "member")
+u2 = User.create(first_name: "Kim", last_name: "Possible", email: "not@spy.com", password: "rufus123", role: "member")
+u3 = User.create(first_name: "Everett", last_name: "Yoooow", email: "hoodie@vest.com", password: "spillsdrink", role: "member")
 
 c1 = Cape.create(user: u1, name: "Nedzilla", full_name: "Debbie Lehman", gender: "Male", affiliation: "Starbucks Galactica", intelligence: 100, strength: 77, speed: 89, url: "https://s3-prod.adage.com/s3fs-public/styles/width_1024/public/little_debbie.jpg")
 c2 = Cape.create(user: u2, name: "Speedy", full_name: "Jimmy Buffet", gender: "Male", affiliation: "West Side", intelligence: 99, strength: 99, speed: 4, url: "https://www.nationalgeographic.com/content/dam/magazine/rights-exempt/2017/10/Departments/Explore/explore-slow-loris-photo-ark.ngsversion.1503078357493.adapt.1900.1.jpg")

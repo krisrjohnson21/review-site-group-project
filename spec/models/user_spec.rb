@@ -22,4 +22,5 @@ RSpec.describe User, type: :model do
       user = FactoryBot.create(:user, role: "admin")
       expect(user.admin?).to eq(true)
     end
+  end
 end

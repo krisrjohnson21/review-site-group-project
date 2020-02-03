@@ -4,7 +4,8 @@ RSpec.describe Api::V1::CapesController, type: :controller do
     first_name: "Bobby",
     last_name: "Wick",
     email: "bobby@example.com",
-    password: "password"
+    password: "password",
+    role: "member"
   )
 
   }
@@ -30,7 +31,7 @@ RSpec.describe Api::V1::CapesController, type: :controller do
     speed: 99,
     url: "https://vignette1.wikia.nocookie.net/es.futurama/images/1/19/Ulr.png/revision/latest?cb=20130123214147"
   ) }
-  
+
   describe "GET#index" do
     it "should return the capes and their names" do
       get :index
@@ -40,8 +41,8 @@ RSpec.describe Api::V1::CapesController, type: :controller do
 
       expect(returned_json["capes"].length).to be 2
 
-      expect(returned_json["capes"][0].length).to be 10
-      expect(returned_json["capes"][1].length).to be 10
+      expect(returned_json["capes"][0].length).to be 12
+      expect(returned_json["capes"][1].length).to be 12
 
       expect(returned_json["capes"][0]["name"]).to eq "Trogdor"
       expect(returned_json["capes"][0]["fullName"]).to eq "Trogdor The Burninator"

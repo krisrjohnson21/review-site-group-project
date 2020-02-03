@@ -84,12 +84,11 @@ const NewCapeForm = props => {
           setRedirect(true);
           setFreshCape(body.id);
         }
-
         setDuplicateError(body.errors[0])
       })
       .catch(error => {
         if (error.message === "401 (Unauthorized)"){
-          setLoginError("Signup or Log In First to create your own hero")
+          setLoginError("Signup or Log In to create your own hero")
         }
         console.error(`Error in fetch: ${error.message}`);
       })

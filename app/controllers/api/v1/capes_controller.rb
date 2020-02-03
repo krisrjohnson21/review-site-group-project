@@ -11,14 +11,13 @@ class Api::V1::CapesController < ApiController
   end
 
  def create
-  user = current_user.id 
   cape = Cape.new(cape_params)
-  cape.user_id = user
-    if cape.save
+
+  if cape.save
      render json: cape
-    else
+  else
      render json: { errors: cape.errors.full_messages }
-    end
+  end
  end
 
  private

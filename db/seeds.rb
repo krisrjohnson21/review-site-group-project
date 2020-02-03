@@ -10,3 +10,4 @@ r3 = Review.create(rating: 1, body: "Only has two shirts, wears one.", user_id: 
 r4 = Review.create(rating: 10, body: "Thinks he moves fast, and everyone else moves slow", user_id: 1, cape_id: 2)
 r5 = Review.create(rating: 5, body: "Still sleeping", user_id: 2, cape_id: 3)
 r6 = Review.create(rating: 7, body: "Eats lunch alone, when he doesnt have to", user_id: 3, cape_id: 3)
+

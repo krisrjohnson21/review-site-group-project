@@ -7,10 +7,6 @@ const CapeShowContainer = ({ match }) => {
   const [reviews, setReviews] = useState([]);
   const capeId = match.params.id;
 
-  const handleVote = () => {
-    console.log('hi');
-  };
-
   useEffect(() => {
     fetch(`/api/v1/capes/${capeId}`)
       .then(response => {
@@ -53,9 +49,6 @@ const CapeShowContainer = ({ match }) => {
     return (
       <Review
         key={review.id}
-        id={review.id}
-        count={review.vote}
-        handleVote={handleVote}
         fullName={review.user_full_name}
         rating={review.rating}
         body={review.body}

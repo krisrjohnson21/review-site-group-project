@@ -75,13 +75,13 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(returned_json["reviews"][0]["rating"]).to eq 5
       expect(returned_json["reviews"][0]["body"]).to eq "What an awesome superhero wow"
       expect(returned_json["reviews"][0]["user_id"]).to eq 1
-      expect(returned_json["reviews"][0]["user_full_name"]).to eq "Homestar Runner"
+      expect(returned_json["reviews"][0]["userFullName"]).to eq "Homestar Runner"
       expect(returned_json["reviews"][0]["cape_id"]).to eq 1
 
       expect(returned_json["reviews"][1]["rating"]).to eq 7
       expect(returned_json["reviews"][1]["body"]).to eq "What an average superhero blah"
       expect(returned_json["reviews"][1]["user_id"]).to eq 2
-      expect(returned_json["reviews"][1]["user_full_name"]).to eq "Miss Marzipan"
+      expect(returned_json["reviews"][1]["userFullName"]).to eq "Miss Marzipan"
       expect(returned_json["reviews"][1]["cape_id"]).to eq 2
     end
   end

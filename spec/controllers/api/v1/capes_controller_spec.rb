@@ -1,6 +1,15 @@
 require "rails_helper"
 RSpec.describe Api::V1::CapesController, type: :controller do
+  let!(:first_user) { User.create(
+    first_name: "Chris",
+    last_name: "Smith",
+    email: "chris@example.com",
+    password: "password"
+  )
+
+  }
   let!(:first_cape) { Cape.create(
+    user: first_user,
     name: "Trogdor",
     full_name: "Trogdor The Burninator",
     gender: "Dragon",
@@ -11,6 +20,7 @@ RSpec.describe Api::V1::CapesController, type: :controller do
     url: "https://lh5.googleusercontent.com/proxy/X3_Io8z31Fim6hdOC47CIAOM4iBAAJQ5XKa9jw14gwbgqdVjA-lc-dzyxKdkqWsn52jtOIkFc8fIAMz67e7NfUfiKF7VR30uZ--sFoHxvG8tt1upS23ecWnZZ2Y"
   ) }
   let!(:second_cape) { Cape.create(
+    user: first_user,
     name: "MechaBlart",
     full_name: "The Artist Formerly Known As Paul Blart",
     gender: "Robot",

@@ -6,7 +6,7 @@ import ErrorList from './ErrorList';
 const NewCapeForm = () => {
   const defaultForm = {
     name: '',
-    full_name: '',
+    fullName: '',
     gender: '',
     affiliation: '',
     intelligence: 1,

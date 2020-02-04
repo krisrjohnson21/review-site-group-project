@@ -33,7 +33,7 @@ RSpec.describe Api::V1::CapesController, type: :controller do
       expect(returned_json["capes"][1].length).to be 10
 
       expect(returned_json["capes"][0]["name"]).to eq "Trogdor"
-      expect(returned_json["capes"][0]["full_name"]).to eq "Trogdor The Burninator"
+      expect(returned_json["capes"][0]["fullName"]).to eq "Trogdor The Burninator"
       expect(returned_json["capes"][0]["gender"]).to eq "Dragon"
       expect(returned_json["capes"][0]["affiliation"]).to eq "StrongBad and StrongSad"
       expect(returned_json["capes"][0]["intelligence"]).to eq 95
@@ -42,7 +42,7 @@ RSpec.describe Api::V1::CapesController, type: :controller do
       expect(returned_json["capes"][0]["url"]).to eq "https://lh5.googleusercontent.com/proxy/X3_Io8z31Fim6hdOC47CIAOM4iBAAJQ5XKa9jw14gwbgqdVjA-lc-dzyxKdkqWsn52jtOIkFc8fIAMz67e7NfUfiKF7VR30uZ--sFoHxvG8tt1upS23ecWnZZ2Y"
 
       expect(returned_json["capes"][1]["name"]).to eq "MechaBlart"
-      expect(returned_json["capes"][1]["full_name"]).to eq "The Artist Formerly Known As Paul Blart"
+      expect(returned_json["capes"][1]["fullName"]).to eq "The Artist Formerly Known As Paul Blart"
       expect(returned_json["capes"][1]["gender"]).to eq "Robot"
       expect(returned_json["capes"][1]["affiliation"]).to eq "Burlington Mall"
       expect(returned_json["capes"][1]["intelligence"]).to eq 100
@@ -52,11 +52,22 @@ RSpec.describe Api::V1::CapesController, type: :controller do
     end
   end
 
-  describe "DELETE#destroy" do
-    it "deletes a cape" do
-      prev_count = Cape.count
-      Cape.destroy(first_cape.id)
-      expect(Cape.count).to eq(prev_count - 1)
+  describe "GET#show" do
+    it "should return the cape and their attributes" do
+      get :show, params: {id: first_cape.id}
+      returned_json = JSON.parse(response.body)
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq("application/json")
+
+      expect(returned_json["cape"]["name"]).to eq "Trogdor"
+      expect(returned_json["cape"]["fullName"]).to eq "Trogdor The Burninator"
+      expect(returned_json["cape"]["gender"]).to eq "Dragon"
+      expect(returned_json["cape"]["affiliation"]).to eq "StrongBad and StrongSad"
+      expect(returned_json["cape"]["intelligence"]).to eq 95
+      expect(returned_json["cape"]["strength"]).to eq 75
+      expect(returned_json["cape"]["speed"]).to eq 80
+      expect(returned_json["cape"]["url"]).to eq "https://lh5.googleusercontent.com/proxy/X3_Io8z31Fim6hdOC47CIAOM4iBAAJQ5XKa9jw14gwbgqdVjA-lc-dzyxKdkqWsn52jtOIkFc8fIAMz67e7NfUfiKF7VR30uZ--sFoHxvG8tt1upS23ecWnZZ2Y"
     end
   end
 end

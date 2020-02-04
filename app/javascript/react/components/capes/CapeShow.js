@@ -1,7 +1,7 @@
 import {
+  faBolt,
   faBrain,
-  faFistRaised,
-  faBolt
+  faFistRaised
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
@@ -9,7 +9,7 @@ import React from 'react';
 const CapeShow = ({ capeData }) => {
   let {
     name,
-    full_name,
+    fullName,
     gender,
     affiliation,
     intelligence,
@@ -26,28 +26,34 @@ const CapeShow = ({ capeData }) => {
         </div>
         <div className=' back'>
           <h2 className='text-shadow' id='full-name'>
-            {full_name}
+            {fullName}
           </h2>
-          <h4>Gender: {gender}</h4>
-          <h4>Affiliation: {affiliation}</h4>
+          <h4 id='gender'>Gender: {gender}</h4>
+          <h4 id='affiliation'>Affiliation: {affiliation}</h4>
           <div className='stats'>
             <div>
               <div className='title'>Intelligence</div>
 
               <FontAwesomeIcon icon={faBrain} />
-              <div className='value'>{intelligence}</div>
+              <div className='value' id='intelligence'>
+                {intelligence}
+              </div>
             </div>
             <div>
               <div className='title'>Strength</div>
 
               <FontAwesomeIcon icon={faFistRaised} />
-              <div className='value'>{strength}</div>
+              <div className='value' id='strength'>
+                {strength}
+              </div>
             </div>
             <div>
               <div className='title'>Speed</div>
               <FontAwesomeIcon icon={faBolt} />
 
-              <div className='value'>{speed}</div>
+              <div className='value' id='speed'>
+                {speed}
+              </div>
             </div>
           </div>
         </div>

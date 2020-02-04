@@ -1,9 +1,7 @@
 class Api::V1::CapesController < ApiController
 
   def index
-
     render json: Cape.all
-
   end
 
   def show
@@ -21,8 +19,8 @@ class Api::V1::CapesController < ApiController
  end
 
  private
- 
+
  def cape_params
-   params.permit(:name,:full_name,:gender,:affiliation,:intelligence,:strength,:speed,:url)
+   params.permit(:name,:fullName,:gender,:affiliation,:intelligence,:strength,:speed,:url)
  end
 end

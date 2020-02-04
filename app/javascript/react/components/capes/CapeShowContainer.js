@@ -57,7 +57,6 @@ const CapeShowContainer = ({ match }) => {
   };
 
   const reviewList = reviews.map(review => {
-    debugger;
     return (
       <Review
         key={review.id}

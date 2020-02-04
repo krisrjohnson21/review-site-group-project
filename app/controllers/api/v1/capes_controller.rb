@@ -10,16 +10,17 @@ class Api::V1::CapesController < ApiController
 
  def create
   cape = Cape.new(cape_params)
-    if cape.save
+
+  if cape.save
      render json: cape
-    else
+  else
      render json: { errors: cape.errors.full_messages }
-    end
+  end
  end
 
  private
 
  def cape_params
-   params.require(:cape).permit(:name,:fullName,:gender,:affiliation,:intelligence,:strength,:speed,:url)
+   params.permit(:name,:fullName,:gender,:affiliation,:intelligence,:strength,:speed,:url)
  end
 end

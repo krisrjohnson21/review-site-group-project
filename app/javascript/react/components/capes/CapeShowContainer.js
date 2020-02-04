@@ -8,7 +8,7 @@ import ReviewTile from '../reviews/ReviewTile'
 const CapeShowContainer = (props) => {
   const [cape, setCape] = useState({})
   const [reviews, setReviews] = useState([])
-  const [loginError, setLoginError] = useState("")
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     let capeId = props.match.params.id
@@ -25,7 +25,8 @@ const CapeShowContainer = (props) => {
     .then(response => response.json())
     .then(response => {
       setCape(response.cape)
-      setReviews(response.cape.reviews)
+      setReviews(response.reviews.reviews)
+      setUser(response.user)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
@@ -60,12 +61,9 @@ const CapeShowContainer = (props) => {
       ])
     })
     .catch(error => {
-      if (error.message === "401 (Unauthorized)"){
-        setLoginError("Signup or Log In to review this hero")
-      }
       console.error(`Error in fetch: ${error.message}`);
     })
-}
+  }
 
   const reviewList = reviews.map((review) => {
     let id = review.id
@@ -98,7 +96,6 @@ const CapeShowContainer = (props) => {
       <ReviewFormContainer
         addNewReview={addNewReview}
         reviews={cape.reviews}
-        signInError={loginError}
       />
     </div>
     </>

@@ -6,9 +6,8 @@ RSpec.describe Api::V1::CapesController, type: :controller do
     email: "bobby@example.com",
     password: "password",
     role: "member"
-  )
+  ) }
 
-  }
   let!(:first_cape) { Cape.create(
     user: first_user,
     name: "Trogdor",
@@ -20,6 +19,7 @@ RSpec.describe Api::V1::CapesController, type: :controller do
     speed: 80,
     url: "https://lh5.googleusercontent.com/proxy/X3_Io8z31Fim6hdOC47CIAOM4iBAAJQ5XKa9jw14gwbgqdVjA-lc-dzyxKdkqWsn52jtOIkFc8fIAMz67e7NfUfiKF7VR30uZ--sFoHxvG8tt1upS23ecWnZZ2Y"
   ) }
+  
   let!(:second_cape) { Cape.create(
     user: first_user,
     name: "MechaBlart",

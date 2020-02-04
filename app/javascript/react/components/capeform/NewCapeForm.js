@@ -19,7 +19,6 @@ const NewCapeForm = props => {
   const [freshCape, setFreshCape] = useState(null);
   const [redirect, setRedirect] = useState(false);
   const [duplicateError, setDuplicateError] = useState("")
-  const [loginError, setLoginError] = useState("")
 
 
   const validForSubmission = () => {
@@ -59,7 +58,7 @@ const NewCapeForm = props => {
     }
   };
 
-  function addSuperhero() {
+  const addSuperhero = () => {
     fetch('/api/v1/capes', {
       credentials: 'same-origin',
       method: 'POST',
@@ -69,29 +68,26 @@ const NewCapeForm = props => {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
           throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        if(body.id){
-          setRedirect(true);
-          setFreshCape(body.id);
-        }
-        setDuplicateError(body.errors[0])
-      })
-      .catch(error => {
-        if (error.message === "401 (Unauthorized)"){
-          setLoginError("Signup or Log In to create your own hero")
-        }
-        console.error(`Error in fetch: ${error.message}`);
-      })
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      if(body.id){
+        setRedirect(true);
+        setFreshCape(body.id);
+      }
+      setDuplicateError(body.errors[0])
+    })
+    .catch(error => {
+      console.error(`Error in fetch: ${error.message}`);
+    })
   }
 
   if (redirect && freshCape !== null) {
@@ -103,7 +99,6 @@ const NewCapeForm = props => {
     <>
       <div>
         <h5>{duplicateError}</h5>
-        <h5>{loginError}</h5>
       </div>
 
       <form onSubmit={formSubmit}>

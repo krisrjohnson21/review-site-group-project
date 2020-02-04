@@ -6,18 +6,25 @@ class Api::V1::CapesController < ApiController
   end
 
   def show
-    render json: Cape.find(params[:id])
+    cape = Cape.find(params[:id])
+    serialized = ActiveModelSerializers::SerializableResource.new(
+      cape.reviews.order('created_at DESC'),
+      each_serializer: ReviewSerializer
+    )
+    render json: {
+     cape: cape,
+     reviews: serialized,
+     user: current_user
+   }
   end
 
   def create
-    if user_signed_in?
-      cape = Cape.new(cape_params)
-      cape.user = current_user
-      if cape.save
-        render json: cape
-      else
-        render json: { errors: cape.errors.full_messages }
-      end
+    cape = Cape.new(cape_params)
+    cape.user = current_user
+    if cape.save
+      render json: cape
+    else
+      render json: { errors: cape.errors.full_messages }
     end
   end
 

@@ -12,10 +12,12 @@
 <div class="top-bar" id="responsive-menu">
   <div class="top-bar-left">
     <h1 class="menu-text">Zero to Hero</h1>
-
-<a href="/new">Add a Hero</a>
-<a href="/superheroes">All Superheroes</a>
+    <%- if current_user -%>
+      <a href="/new">Add a Hero</a>
+    <%- end -%>
+    <a href="/superheroes">All Superheroes</a>
   </div>
+
   <div class="top-bar-right">
     <ul class="menu">
       <%- if current_user -%>

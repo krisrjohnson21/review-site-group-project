@@ -12,16 +12,14 @@ class Api::V1::ReviewsController < ApiController
   end
 
   def create
-    if user_signed_in?
-      review = Review.new(review_params)
-      cape = Cape.find(params["cape_id"])
-      review.cape = cape
-      review.user = current_user
-      if review.save
-        render json: review
-      else
-        render json: { error: review.errors.full_messages }, status: unprocessable_entity
-      end
+    review = Review.new(review_params)
+    cape = Cape.find(params["cape_id"])
+    review.cape = cape
+    review.user = current_user
+    if review.save
+      render json: review
+    else
+      render json: { error: review.errors.full_messages }, status: unprocessable_entity
     end
   end
 
@@ -33,7 +31,7 @@ class Api::V1::ReviewsController < ApiController
   def authorize_user
     if !user_signed_in || !current_user.admin?
       flash[:notice] = "You do not have access to this page."
-        redirect_to root_path
+      redirect_to root_path
     end
   end
 end

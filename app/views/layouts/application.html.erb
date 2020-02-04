@@ -9,23 +9,25 @@
 <body>
 
 
-<div class="top-bar" id="responsive-menu">
+<div class="top-bar sticky" data-sticky data-margin-top="0" >
   <div class="top-bar-left">
-    <h1 class="menu-text">Zero to Hero</h1>
     <%- if current_user -%>
       <a href="/new">Add a Hero</a>
     <%- end -%>
     <a href="/superheroes">All Superheroes</a>
+    <div class="__title">
+      <h1 >Zero to Hero</h1>
+    </div>
   </div>
 
   <div class="top-bar-right">
     <ul class="menu">
       <%- if current_user -%>
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-      <li><a href="#0"><%= link_to 'Sign Up', new_user_registration_path %></a></li>
-      <li><a href="#0"><%= link_to 'Sign In', new_user_session_path %></a></li>
-       <%- end -%>
+      <%- else -%>
+        <a href="#0"><%= link_to 'Sign Up', new_user_registration_path %></a>
+        <a href="#0"><%= link_to 'Sign In', new_user_session_path %></a>
+      <%- end -%>
     </ul>
   </div>
 </div>

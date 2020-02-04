@@ -10,7 +10,6 @@ class CreateCapes < ActiveRecord::Migration[5.2]
       t.integer :strength, null: false
       t.integer :speed, null: false
       t.string :url, null: false
-
       t.timestamps
     end
   end

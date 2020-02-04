@@ -1,48 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import CapeTile from './CapeTile'
+import CapeTile from './CapeTile';
 
-const CapesList = (props) => {
-  const [capes, setCapes] = useState([])
+const CapesList = () => {
+  const [capes, setCapes] = useState([]);
 
   useEffect(() => {
-    fetch("/api/v1/capes.json")
-    .then(response => {
-      if (response.ok) {
-        return response
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage);
-          throw(error)
-      }
-    })
-    .then(response => response.json())
-    .then(response => {
-      setCapes(response.capes)
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`))
-  }, [])
+    fetch('/api/v1/capes.json')
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(response => {
+        setCapes(response.capes);
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }, []);
 
-  const capesTiles = capes.map((cape) => {
-    let id = cape.id
+  const capesTiles = capes.map(cape => {
+    let id = cape.id;
     return (
       <Link to={`/superheroes/${id}`} key={cape.id}>
-        <CapeTile
-          id={cape.id}
-          cape={cape}
-          />
+        <CapeTile id={cape.id} cape={cape} />
       </Link>
-    )
-  })
+    );
+  });
 
-  return(
-    <div>
-      <h1>Superheroes</h1>
-      <ul>
-        {capesTiles}
-      </ul>
-    </div>
-  )
-}
+  return <>{capesTiles}</>;
+};
 
 export default CapesList;

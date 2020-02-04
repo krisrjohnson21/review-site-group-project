@@ -1,0 +1,46 @@
+$custom-gold: rgba(252, 214, 0, 1);
+$custom-black: rgba(29, 30, 24, 1);
+$custom-red: rgba(242, 87, 87, 1);
+$custom-navy: rgba(49, 61, 90, 1);
+$cream: #fcfae3;
+
+#feedback-page {
+  text-align: center;
+}
+
+._form_title {
+  color: $custom-gold;
+}
+
+#form-main {
+  width: 100%;
+  float: left;
+  padding-top: 0px;
+
+  label {
+    color: $cream;
+  }
+}
+
+#form-div {
+  background-color: $custom-navy;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-top: 35px;
+  padding-bottom: 50px;
+  width: 450px;
+  float: left;
+  left: 50%;
+  position: absolute;
+  margin-top: 30px;
+  margin-left: -260px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  line-height: 150%;
+  resize: vertical;
+}

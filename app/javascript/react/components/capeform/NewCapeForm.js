@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import ErrorList from './ErrorList';
+import humps from 'humps';
 
 const NewCapeForm = props => {
   const defaultForm = {
@@ -38,10 +39,11 @@ const NewCapeForm = props => {
   };
 
   const addSuperhero = () => {
+    let decamelize = humps.decamelizeKeys(form)
     fetch('/api/v1/capes', {
       credentials: 'same-origin',
       method: 'POST',
-      body: JSON.stringify(form),
+      body: JSON.stringify(decamelize),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
@@ -125,11 +127,11 @@ const NewCapeForm = props => {
                     Real Name
                     <input
                       onChange={onFormChange}
-                      id='full_name'
-                      name='full_name'
+                      id='fullName'
+                      name='fullName'
                       type='text'
                       placeholder='Rob Huff'
-                      value={form.full_name}
+                      value={form.fullName}
                     />
                   </label>
                 </div>

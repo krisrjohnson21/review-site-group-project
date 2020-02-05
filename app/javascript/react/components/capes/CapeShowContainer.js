@@ -28,7 +28,7 @@ const CapeShowContainer = ({ match }) => {
   }, [])
 
   const addNewReview = formPayload => {
-    let capeId = props.match.params.id;
+    let capeId = match.params.id;
     fetch(`/api/v1/capes/${capeId}/reviews/`, {
       credentials: 'same-origin',
       method: 'POST',

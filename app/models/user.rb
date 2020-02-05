@@ -10,6 +10,8 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :role, presence: true
 
+  mount_uploader :profile_photo, ProfilePhotoUploader
+
   def admin?
     role == "admin"
   end

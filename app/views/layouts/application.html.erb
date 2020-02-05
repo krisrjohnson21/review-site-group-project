@@ -8,7 +8,6 @@
 </head>
 <body>
 
-
 <div class="top-bar sticky" data-sticky data-margin-top="0" >
   <div class="top-bar-left">
     <%- if current_user -%>
@@ -24,6 +23,9 @@
     <ul class="menu">
       <%- if current_user -%>
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+        <li>
+          <img class="profile-pic" src=<%=current_user.profile_photo%> >
+        </li>
       <%- else -%>
         <a href="#0"><%= link_to 'Sign Up', new_user_registration_path %></a>
         <a href="#0"><%= link_to 'Sign In', new_user_session_path %></a>
@@ -48,10 +50,6 @@
     <%- end -%>
   <%- end -%>
   <%= javascript_pack_tag 'application' %>
-
-
-
-
 
   <%= yield :extra_footer %>
 

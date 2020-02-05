@@ -6,8 +6,7 @@ class Api::V1::CapesController < ApiController
   end
 
   def show
-    cape = Cape.find(params[:id])
-    render json: cape
+    render json: Cape.find(params[:id])
   end
 
   def create
@@ -27,8 +26,7 @@ class Api::V1::CapesController < ApiController
 
   def authorize_user
     if !user_signed_in
-      flash[:notice] = "Please sign in to access this page"
-      redirect_to root_path
+      render json: { message: "Please sign in to access this page" }
     end
   end
 end

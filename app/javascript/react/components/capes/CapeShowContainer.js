@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Review from '../reviewcomponents/Review';
 import ReviewFormContainer from '../reviewcomponents/ReviewFormContainer';
+import EditCapeFormContainer from './EditCapeFormContainer';
 import CapeShow from './CapeShow';
 
 const CapeShowContainer = ({ match }) => {
@@ -28,7 +29,6 @@ const CapeShowContainer = ({ match }) => {
   }, [])
 
   const addNewReview = formPayload => {
-    let capeId = props.match.params.id;
     fetch(`/api/v1/capes/${capeId}/reviews/`, {
       credentials: 'same-origin',
       method: 'POST',
@@ -56,6 +56,34 @@ const CapeShowContainer = ({ match }) => {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   };
 
+  const editCapeFunction = formPayload => {
+    fetch(`/api/v1/capes/${capeId}`, {
+      credentials: 'same-origin',
+      method: 'PUT',
+      body: JSON.stringify(formPayload),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => {
+        return response.json();
+      })
+      .then(response => {
+        setCape(response.cape);
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  };
+
   const reviewList = reviews.map(review => {
     return (
       <Review
@@ -72,6 +100,11 @@ const CapeShowContainer = ({ match }) => {
     <>
       <div className='text-center'>
         <CapeShow key={cape.id} capeData={cape} />
+        <hr />
+        <EditCapeFormContainer
+          capeProps={cape}
+          editCapeFunction={editCapeFunction}
+        />
         <hr />
         <h2>
           <strong>Reviews for {cape.name}</strong>

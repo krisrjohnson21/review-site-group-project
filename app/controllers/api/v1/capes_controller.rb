@@ -6,7 +6,7 @@ class Api::V1::CapesController < ApiController
   end
 
   def show
-    render json: Cape.find(params[:id])
+    render json: Cape.find(params["id"])
   end
 
   def create
@@ -16,6 +16,18 @@ class Api::V1::CapesController < ApiController
       render json: cape
     else
       render json: { errors: cape.errors.full_messages }
+    end
+  end
+
+  def update
+    cape = Cape.find(params["id"])
+    cape.update(cape_params)
+
+    if cape.save
+      flash[:notice] = "Superhero was successfully updated!"
+    else
+      flash.now[:errors] = cape.errors.full_messages.to_sentence
+      render json: cape
     end
   end
 

@@ -7,7 +7,6 @@ const CapeShowContainer = ({ match }) => {
   const [cape, setCape] = useState({});
   const [reviews, setReviews] = useState([]);
   const capeId = match.params.id;
-  // const [user, setUser] = useState(null)
 
   useEffect(() => {
     fetch(`/api/v1/capes/${capeId}`)
@@ -24,7 +23,6 @@ const CapeShowContainer = ({ match }) => {
     .then(response => {
       setCape(response.cape)
       setReviews(response.cape.reviews)
-      // setUser(response.user)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])

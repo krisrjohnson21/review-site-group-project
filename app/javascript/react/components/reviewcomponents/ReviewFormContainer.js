@@ -55,6 +55,9 @@ const ReviewFormContainer = props => {
 
   return(
     <form className="text-center" onSubmit={handleSubmit}>
+      <div>
+        <h5>{props.signInError}</h5>
+      </div>
       <ErrorList errors={errors} />
       <label>Superhero Rating (1-10)</label>
       <TextField

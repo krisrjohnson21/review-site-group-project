@@ -1,6 +1,16 @@
 require "rails_helper"
+
 RSpec.describe Api::V1::CapesController, type: :controller do
+  let!(:first_user) { User.create(
+    first_name: "Bobby",
+    last_name: "Wick",
+    email: "bobby@example.com",
+    password: "password",
+    role: "member"
+  ) }
+
   let!(:first_cape) { Cape.create(
+    user: first_user,
     name: "Trogdor",
     full_name: "Trogdor The Burninator",
     gender: "Dragon",
@@ -10,7 +20,9 @@ RSpec.describe Api::V1::CapesController, type: :controller do
     speed: 80,
     url: "https://lh5.googleusercontent.com/proxy/X3_Io8z31Fim6hdOC47CIAOM4iBAAJQ5XKa9jw14gwbgqdVjA-lc-dzyxKdkqWsn52jtOIkFc8fIAMz67e7NfUfiKF7VR30uZ--sFoHxvG8tt1upS23ecWnZZ2Y"
   ) }
+
   let!(:second_cape) { Cape.create(
+    user: first_user,
     name: "MechaBlart",
     full_name: "The Artist Formerly Known As Paul Blart",
     gender: "Robot",
@@ -20,6 +32,7 @@ RSpec.describe Api::V1::CapesController, type: :controller do
     speed: 99,
     url: "https://vignette1.wikia.nocookie.net/es.futurama/images/1/19/Ulr.png/revision/latest?cb=20130123214147"
   ) }
+
   describe "GET#index" do
     it "should return the capes and their names" do
       get :index
@@ -29,8 +42,8 @@ RSpec.describe Api::V1::CapesController, type: :controller do
 
       expect(returned_json["capes"].length).to be 2
 
-      expect(returned_json["capes"][0].length).to be 10
-      expect(returned_json["capes"][1].length).to be 10
+      expect(returned_json["capes"][0].length).to be 11
+      expect(returned_json["capes"][1].length).to be 11
 
       expect(returned_json["capes"][0]["name"]).to eq "Trogdor"
       expect(returned_json["capes"][0]["fullName"]).to eq "Trogdor The Burninator"
@@ -53,7 +66,10 @@ RSpec.describe Api::V1::CapesController, type: :controller do
   end
 
   describe "GET#show" do
+
     it "should return the cape and their attributes" do
+      sign_in first_user
+      
       get :show, params: {id: first_cape.id}
       returned_json = JSON.parse(response.body)
 

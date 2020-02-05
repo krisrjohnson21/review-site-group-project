@@ -1,6 +1,5 @@
 class Api::V1::ReviewsController < ApiController
-  # skip_before_action :verify_authenticity_token, only: [:create]
-  protect_from_forgery unless: -> { request.format.json? }
+  before_action :authenticate_user!, except: [:show, :index]
 
   def index
     render json: Review.all
@@ -17,7 +16,6 @@ class Api::V1::ReviewsController < ApiController
     cape = Cape.find(params["cape_id"])
     review.cape = cape
     review.user = current_user
-
     if review.save
       render json: review
     else
@@ -25,8 +23,14 @@ class Api::V1::ReviewsController < ApiController
     end
   end
 
-  private
-    def review_params
-      params.permit("rating", "body")
+  protected
+  def review_params
+    params.permit("rating", "body")
+  end
+
+  def authorize_user
+    if !user_signed_in || !current_user.admin?
+      render json: { message: "You do not have access to this page." }
     end
+  end
 end

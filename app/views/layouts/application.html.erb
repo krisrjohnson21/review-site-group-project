@@ -11,13 +11,15 @@
 
 <div class="top-bar sticky" data-sticky data-margin-top="0" >
   <div class="top-bar-left">
-    <a href="/new" class="__item">Add a Hero</a>
-    <a href="/superheroes" class="__item">All Heroes</a>
-    <a href="#" class="__item">My Account</a>
+    <%- if current_user -%>
+      <a href="/new">Add a Hero</a>
+    <%- end -%>
+    <a href="/superheroes">All Superheroes</a>
+    <div class="__title">
+      <h1 >Zero to Hero</h1>
+    </div>
   </div>
-  <div class="__title">
-    <h1 >Zero to Hero</h1>
-  </div>
+
   <div class="top-bar-right">
     <ul class="menu">
       <%- if current_user -%>

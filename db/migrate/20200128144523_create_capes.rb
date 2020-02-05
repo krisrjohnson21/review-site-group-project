@@ -1,6 +1,7 @@
 class CreateCapes < ActiveRecord::Migration[5.2]
   def change
     create_table :capes do |t|
+      t.belongs_to :user, null: false
       t.string :name, null: false, index: { unique: true }
       t.string :full_name, null: false
       t.string :gender, null: false

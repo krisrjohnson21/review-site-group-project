@@ -7,7 +7,7 @@ const CapeShowContainer = ({ match }) => {
   const [cape, setCape] = useState({});
   const [reviews, setReviews] = useState([]);
   const capeId = match.params.id;
-  const [user, setUser] = useState(null)
+  // const [user, setUser] = useState(null)
 
   useEffect(() => {
     fetch(`/api/v1/capes/${capeId}`)
@@ -23,9 +23,8 @@ const CapeShowContainer = ({ match }) => {
     .then(response => response.json())
     .then(response => {
       setCape(response.cape)
-      debugger
-      setReviews(response.reviews.reviews)
-      setUser(response.user)
+      setReviews(response.cape.reviews)
+      // setUser(response.user)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
@@ -82,7 +81,6 @@ const CapeShowContainer = ({ match }) => {
         <div>{reviewList}</div>
       </div>
 
-    {user &&
       <div>
         <hr />
         <h2 className='text-center'>
@@ -92,7 +90,7 @@ const CapeShowContainer = ({ match }) => {
           addNewReview={addNewReview}
           reviews={cape.reviews}
         />
-      </div>}
+      </div>
     </>
   );
 };

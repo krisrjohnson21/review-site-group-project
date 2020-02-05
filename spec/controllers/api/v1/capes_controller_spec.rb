@@ -1,4 +1,5 @@
 require "rails_helper"
+
 RSpec.describe Api::V1::CapesController, type: :controller do
   let!(:first_user) { User.create(
     first_name: "Bobby",
@@ -65,7 +66,10 @@ RSpec.describe Api::V1::CapesController, type: :controller do
   end
 
   describe "GET#show" do
+
     it "should return the cape and their attributes" do
+      sign_in first_user
+      
       get :show, params: {id: first_cape.id}
       returned_json = JSON.parse(response.body)
 

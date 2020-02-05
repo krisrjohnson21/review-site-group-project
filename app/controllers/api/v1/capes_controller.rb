@@ -7,15 +7,7 @@ class Api::V1::CapesController < ApiController
 
   def show
     cape = Cape.find(params[:id])
-    serialized = ActiveModelSerializers::SerializableResource.new(
-      cape.reviews.order('created_at DESC'),
-      each_serializer: ReviewSerializer
-    )
-    render json: {
-     cape: cape,
-     reviews: serialized,
-     user: current_user
-   }
+    render json: cape
   end
 
   def create
@@ -34,8 +26,8 @@ class Api::V1::CapesController < ApiController
   end
 
   def authorize_user
-    if !user_signed_in || !current_user.admin?
-      flash[:notice] = "You do not have access to this page."
+    if !user_signed_in
+      flash[:notice] = "Please sign in to access this page"
       redirect_to root_path
     end
   end

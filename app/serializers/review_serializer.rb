@@ -4,7 +4,4 @@ class ReviewSerializer < ActiveModel::Serializer
   belongs_to :user
   belongs_to :cape
 
-  def userFullName
-    "#{object.user.first_name} #{object.user.last_name}"
-  end
 end

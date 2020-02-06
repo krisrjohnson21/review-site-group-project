@@ -10,25 +10,25 @@ const CapeShowContainer = ({ match }) => {
 
   useEffect(() => {
     fetch(`/api/v1/capes/${capeId}`)
-    .then(response => {
-      if (response.ok) {
-        return response
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage);
-          throw(error)
-      }
-    })
-    .then(response => response.json())
-    .then(response => {
-      setCape(response.cape)
-      setReviews(response.cape.reviews)
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`))
-  }, [])
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(response => {
+        setCape(response.cape);
+        setReviews(response.cape.reviews);
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }, []);
 
   const addNewReview = formPayload => {
-    let capeId = props.match.params.id;
+    let capeId = match.params.id;
     fetch(`/api/v1/capes/${capeId}/reviews/`, {
       credentials: 'same-origin',
       method: 'POST',

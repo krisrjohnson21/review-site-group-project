@@ -1,16 +1,16 @@
 import React from 'react';
 
 const CapeTile = ({ cape }) => {
-  let { name, intelligence, strength, speed, url } = cape;
+  let { name, url } = cape;
   return (
-    <div>
-      <img src={url} />
-      <h1 id='name'>{name}</h1>
-
-      <h4 id='intelligence'>Intelligence: {intelligence}</h4>
-      <h4 id='strength'>Strength: {strength}</h4>
-      <h4 id='speed'>Speed: {speed}</h4>
-    </div>
+    <>
+      <div className='flip-index'>
+        <div className='front'>
+          <h1 className='text-shadow text-center' id='name'>{name}</h1>
+          <img className='show_img' src={url} />
+        </div>
+      </div>
+    </>
   );
 };
 

@@ -32,7 +32,13 @@ const CapesList = () => {
     );
   });
 
-  return <>{capesTiles}</>;
+  return (
+    <>
+      <div className='index-container'>
+        <div className='row__inner'>{capesTiles}</div>
+      </div>
+    </>
+  );
 };
 
 export default CapesList;

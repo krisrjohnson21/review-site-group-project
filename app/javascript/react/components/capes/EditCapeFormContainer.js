@@ -5,25 +5,17 @@ import TextField from '../reviewcomponents/TextField'
 import ErrorList from '../reviewcomponents/ErrorList'
 
 const EditCapeFormContainer = props => {
-  const [editedCape, setEditedCape] = useState({
-    name: props.capeProps.name,
-    fullName: props.capeProps.fullName,
-    gender: props.capeProps.gender,
-    affiliation: props.capeProps.affiliation,
-    intelligence: props.capeProps.intelligence,
-    strength: props.capeProps.strength,
-    speed: props.capeProps.speed,
-    url: props.capeProps.url
+  const [newCape, setNewCape] = useState({
+    name: "",
+    fullName: "",
+    gender: "",
+    affiliation: "",
+    intelligence: "",
+    strength: "",
+    speed: "",
+    url: ""
   })
   const [errors, setErrors] = useState({})
-  debugger
-
-  const handleFieldChange = (event) => {
-    setEditedCape({
-      ...editedCape,
-      [event.currentTarget.id]: event.currentTarget.value
-    })
-  }
 
   const validForSubmission = () => {
     let submitErrors = {}
@@ -39,6 +31,13 @@ const EditCapeFormContainer = props => {
 
     setErrors(submitErrors)
     return _.isEmpty(submitErrors)
+  }
+
+  const handleFieldChange = (event) => {
+    setEditedCape({
+      ...editedCape,
+      [event.currentTarget.id]: event.currentTarget.value
+    })
   }
 
   const handleEditSubmit = (event) => {
@@ -58,7 +57,7 @@ const EditCapeFormContainer = props => {
         type="text"
         fieldName="name"
         id="name"
-        content={editedCape.name}
+        content={props.capeProps.name}
         handleChange={handleFieldChange}
       />
 
@@ -67,7 +66,7 @@ const EditCapeFormContainer = props => {
         type="text"
         fieldName="fullName"
         id="fullName"
-        content={editedCape.fullName}
+        content={props.capeProps.fullName}
         handleChange={handleFieldChange}
       />
 
@@ -76,7 +75,7 @@ const EditCapeFormContainer = props => {
         type="text"
         fieldName="gender"
         id="gender"
-        content={editedCape.gender}
+        content={props.capeProps.gender}
         handleChange={handleFieldChange}
       />
 
@@ -85,7 +84,7 @@ const EditCapeFormContainer = props => {
         type="text"
         fieldName="affiliation"
         id="affiliation"
-        content={editedCape.affiliation}
+        content={props.capeProps.affiliation}
         handleChange={handleFieldChange}
       />
 
@@ -94,7 +93,7 @@ const EditCapeFormContainer = props => {
         type="text"
         fieldName="url"
         id="url"
-        content={editedCape.url}
+        content={props.capeProps.url}
         handleChange={handleFieldChange}
       />
 
@@ -103,7 +102,7 @@ const EditCapeFormContainer = props => {
         type="number"
         fieldName="strength"
         id="strength"
-        content={editedCape.strength}
+        content={props.capeProps.strength}
         handleChange={handleFieldChange}
       />
 
@@ -112,7 +111,7 @@ const EditCapeFormContainer = props => {
         type="number"
         fieldName="intelligence"
         id="intelligence"
-        content={editedCape.intelligence}
+        content={props.capeProps.intelligence}
         handleChange={handleFieldChange}
       />
 
@@ -121,12 +120,12 @@ const EditCapeFormContainer = props => {
         type="number"
         fieldName="speed"
         id="speed"
-        content={editedCape.speed}
+        content={props.capeProps.speed}
         handleChange={handleFieldChange}
       />
 
       <div className="button-group">
-        <input className="button" type="submit" value="Submit" />
+        <input className="button" type="submit" value="Submit Edits" />
       </div>
     </form>
   )

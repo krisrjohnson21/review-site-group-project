@@ -3,6 +3,7 @@ import Review from '../reviewcomponents/Review';
 import ReviewFormContainer from '../reviewcomponents/ReviewFormContainer';
 import EditCapeFormContainer from './EditCapeFormContainer';
 import CapeShow from './CapeShow';
+import humps from 'humps';
 
 const CapeShowContainer = ({ match }) => {
   const [cape, setCape] = useState({});
@@ -22,7 +23,8 @@ const CapeShowContainer = ({ match }) => {
     })
     .then(response => response.json())
     .then(response => {
-      setCape(response.cape)
+      let camelize = humps.camelizeKeys(response.cape)
+      setCape(camelize)
       setReviews(response.cape.reviews)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))

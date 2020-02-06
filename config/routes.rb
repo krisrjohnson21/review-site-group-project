@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/superheroes', to: "static_pages#index"
   get '/superheroes/:id', to: "static_pages#index"
+  get '/superheroes/:id/edit', to: "static_pages#index"
   get '/superheroes/:id/reviews', to: "static_pages#index"
   get '/', to: "static_pages#index"
   get '/new', to: "static_pages#index"

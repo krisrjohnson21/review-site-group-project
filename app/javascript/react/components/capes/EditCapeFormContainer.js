@@ -5,7 +5,8 @@ import TextField from '../reviewcomponents/TextField'
 import ErrorList from '../reviewcomponents/ErrorList'
 
 const EditCapeFormContainer = props => {
-  const [newCape, setNewCape] = useState({
+
+  const [editedCape, setEditedCape] = useState({
     name: "",
     fullName: "",
     gender: "",
@@ -21,7 +22,7 @@ const EditCapeFormContainer = props => {
     let submitErrors = {}
     const requiredFields = ["name", "fullName", "gender", "affiliation", "intelligence", "strength", "speed", "url"]
     requiredFields.forEach((field) => {
-      if (newReview[field].toString().trim() === "") {
+      if (editedCape[field].toString().trim() === "") {
         submitErrors = {
           ...submitErrors,
           [field]: "cannot be blank"
@@ -47,7 +48,9 @@ const EditCapeFormContainer = props => {
     }
   }
 
+
   return(
+
     <form className="text-center" onSubmit={handleEditSubmit}>
       <h2>Edit Your Custom Superhero:</h2>
       <ErrorList errors={errors} />
@@ -57,7 +60,7 @@ const EditCapeFormContainer = props => {
         type="text"
         fieldName="name"
         id="name"
-        content={props.capeProps.name}
+        content={editedCape.name}
         handleChange={handleFieldChange}
       />
 
@@ -66,7 +69,7 @@ const EditCapeFormContainer = props => {
         type="text"
         fieldName="fullName"
         id="fullName"
-        content={props.capeProps.fullName}
+        content={editedCape.fullName}
         handleChange={handleFieldChange}
       />
 
@@ -75,7 +78,7 @@ const EditCapeFormContainer = props => {
         type="text"
         fieldName="gender"
         id="gender"
-        content={props.capeProps.gender}
+        content={editedCape.gender}
         handleChange={handleFieldChange}
       />
 
@@ -84,7 +87,7 @@ const EditCapeFormContainer = props => {
         type="text"
         fieldName="affiliation"
         id="affiliation"
-        content={props.capeProps.affiliation}
+        content={editedCape.affiliation}
         handleChange={handleFieldChange}
       />
 
@@ -93,7 +96,7 @@ const EditCapeFormContainer = props => {
         type="text"
         fieldName="url"
         id="url"
-        content={props.capeProps.url}
+        content={editedCape.url}
         handleChange={handleFieldChange}
       />
 
@@ -102,7 +105,7 @@ const EditCapeFormContainer = props => {
         type="number"
         fieldName="strength"
         id="strength"
-        content={props.capeProps.strength}
+        content={editedCape.strength}
         handleChange={handleFieldChange}
       />
 
@@ -111,7 +114,7 @@ const EditCapeFormContainer = props => {
         type="number"
         fieldName="intelligence"
         id="intelligence"
-        content={props.capeProps.intelligence}
+        content={editedCape.intelligence}
         handleChange={handleFieldChange}
       />
 
@@ -120,7 +123,7 @@ const EditCapeFormContainer = props => {
         type="number"
         fieldName="speed"
         id="speed"
-        content={props.capeProps.speed}
+        content={editedCape.speed}
         handleChange={handleFieldChange}
       />
 
@@ -128,6 +131,7 @@ const EditCapeFormContainer = props => {
         <input className="button" type="submit" value="Submit Edits" />
       </div>
     </form>
+
   )
 }
 

@@ -8,6 +8,7 @@ import humps from 'humps';
 const CapeShowContainer = ({ match }) => {
   const [cape, setCape] = useState({});
   const [reviews, setReviews] = useState([]);
+  const [currentUser, setCurrentUser] = useState(false)
   const capeId = match.params.id;
 
   useEffect(() => {
@@ -58,11 +59,16 @@ const CapeShowContainer = ({ match }) => {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   };
 
-  const editCapeFunction = formPayload => {
+  if (cape.current_user) {
+    setCurrentUser(true)
+  }
+
+  const editCapeFunction = editedCape => {
+    let decamelize = humps.decamelizeKeys(editedCape)
     fetch(`/api/v1/capes/${capeId}`, {
       credentials: 'same-origin',
-      method: 'PUT',
-      body: JSON.stringify(formPayload),
+      method: 'PATCH',
+      body: JSON.stringify(decamelize),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
@@ -82,6 +88,7 @@ const CapeShowContainer = ({ match }) => {
       })
       .then(response => {
         setCape(response.cape);
+        debugger
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   };
@@ -103,10 +110,12 @@ const CapeShowContainer = ({ match }) => {
       <div className='text-center'>
         <CapeShow key={cape.id} capeData={cape} />
         <hr />
+
         <EditCapeFormContainer
           capeProps={cape}
           editCapeFunction={editCapeFunction}
         />
+
         <hr />
         <h2>
           <strong>Reviews for {cape.name}</strong>

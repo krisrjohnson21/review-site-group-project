@@ -6,12 +6,11 @@ class Api::V1::CapesController < ApiController
   end
 
   def show
-    render json: Cape.find(params["id"])
+    render json: Cape.find(params["id"]), serializer: CapeSerializer
   end
 
   def create
     cape = Cape.new(cape_params)
-    binding.pry
     cape.user = current_user
     if cape.save
       render json: cape
@@ -22,10 +21,11 @@ class Api::V1::CapesController < ApiController
 
   def update
     cape = Cape.find(params["id"])
-    cape.update(cape_params)
+    cape.update_attributes(cape_params)
 
     if cape.save
       flash[:notice] = "Superhero was successfully updated!"
+      render json: cape
     else
       flash.now[:errors] = cape.errors.full_messages.to_sentence
       render json: cape

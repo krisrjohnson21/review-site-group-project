@@ -30,18 +30,6 @@ describe('CapeTile', () => {
     expect(wrapper.find('#name').text()).toBe('Super Nick');
   });
 
-  it('should render a h5 tag with the intelligence of the cape', () => {
-    expect(wrapper.find('#intelligence').text()).toBe('Intelligence: 99');
-  });
-
-  it('should render a h6 tag with the strength of the cape', () => {
-    expect(wrapper.find('#strength').text()).toBe('Strength: 5');
-  });
-
-  it('should render a p tag with the speed of the cape', () => {
-    expect(wrapper.find('#speed').text()).toBe('Speed: 40');
-  });
-
   it('should render an img tag with the url of the cape', () => {
     expect(wrapper.find('img').props()['src']).toBe(
       'https://cdn.bulbagarden.net/upload/thumb/a/a6/Roxanne_Nosepass_Adventures.png/200px-Roxanne_Nosepass_Adventures.png'

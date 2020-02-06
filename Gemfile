@@ -19,7 +19,7 @@ gem 'jbuilder', '~> 2.5'
 
 
 group :development, :test do
-
+  gem "dotenv-rails"
 end
 
 group :development do

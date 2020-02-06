@@ -11,7 +11,6 @@ class Api::V1::CapesController < ApiController
 
   def create
     cape = Cape.new(cape_params)
-    binding.pry
     cape.user = current_user
     if cape.save
       render json: cape

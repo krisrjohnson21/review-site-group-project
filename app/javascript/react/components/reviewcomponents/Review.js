@@ -2,7 +2,7 @@ import React from 'react';
 
 const Review = ({ id, fullName, rating, body }) => {
   return (
-    <div id={id} className='__list-item'>
+    <div id={id} className='__list-item cell'>
       <h4 id='reviewer'>
         <strong>Reviewer Name: </strong>
         {fullName}

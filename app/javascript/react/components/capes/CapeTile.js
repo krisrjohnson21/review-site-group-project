@@ -7,7 +7,7 @@ const CapeTile = ({ cape }) => {
       <div className='flip-index'>
         <div className='front'>
           <h1 className='text-shadow text-center' id='name'>{name}</h1>
-          <img className='show_img' src={url} />
+          <img src={url} />
         </div>
       </div>
     </>

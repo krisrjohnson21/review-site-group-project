@@ -19,16 +19,15 @@
     line-height: 160%;
     color: #999;
   }
-  .show_img {
-    width: auto;
-    height: auto;
+  img {
+    height: 500px;
   }
 }
 
 .index-container {
   max-width: 50%;
   position: absolute;
-  top: 40%;
+  top: 20%;
   left: 30%;
   transform: tranlsate(-50%, -50%);
 }

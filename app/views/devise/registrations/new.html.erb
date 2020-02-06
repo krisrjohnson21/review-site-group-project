@@ -4,7 +4,7 @@
 <div id='form-main'>
   <div id='form-div'>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :id => "form1") do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
         <%= f.label :first_name, "First Name"%><br />
@@ -24,7 +24,7 @@
       <div class="field">
         <%= f.label :password %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
@@ -38,7 +38,7 @@
         <%= f.label :profile_photo, "Upload a profile photo" %><br />
         <%= f.file_field :profile_photo %>
       </div>
-      
+
       <div class="actions">
         <%= f.submit "Sign up", class:"button" %>
       </div>

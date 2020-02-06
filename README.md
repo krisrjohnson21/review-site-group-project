@@ -6,43 +6,43 @@
 
 -Title: Zero to Hero
 
--Description: Users can view superheroes and reviews left by other
+Description: Users can view superheroes and reviews left by other
 users, so you'll always know who to call when you get in trouble. Users can also
 add heroes and leave reviews of their own, with multiple heroic attributes.
 
--Authors:
--Chris Smith
--Erica Huang
--Kris Johnson
--Ned Lehman
+-Authors:<br />
+-Chris Smith<br />
+-Erica Huang<br />
+-Kris Johnson<br />
+-Ned Lehman<br />
 
 Heroku Link
 https://zero-to-hero-20.herokuapp.com/
 
 # Technologies
 
-Ruby - 2.6.3
-Rails - 5.2.3
-React - 16.8.0
-CarrierWave - 2.0.2
-Foundation-Rails - 6.5.3.0
+-Ruby - 2.6.3
+-Rails - 5.2.3
+-React - 16.8.0
+-CarrierWave - 2.0.2
+-Foundation-Rails - 6.5.3.0
 
 # Setup
 
 To set up this app, download the repo and run the following commands in your terminal in exact order:
 
-yarn install
-bundle exec bundle install
-bundle exec rake db:create
-bundle exec rake db:migrate && bundle exec rake db:rollback && bundle exec rake db:migrate
-bundle exec rake db:seed
-yarn start
-new tab- bundle exec rails s
-Navigate your browser to localhost:3000
+-yarn install<br />
+-bundle exec bundle install<br />
+-bundle exec rake db:create<br />
+-bundle exec rake db:migrate && bundle exec rake db:rollback && bundle exec rake db:migrate<br />
+-bundle exec rake db:seed<br />
+-yarn start<br />
+-new tab- bundle exec rails s<br />
+-Navigate your browser to localhost:3000
 
 # Testing
 
-To run tests, run these files in a separate terminal tab:
-bundle exec rake db:test:prepare
-bundle exec rspec
-yarn run test
+To run tests, run these files in a separate terminal tab:<br />
+-bundle exec rake db:test:prepare<br />
+-bundle exec rspec<br />
+-yarn run test

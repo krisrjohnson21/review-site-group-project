@@ -21,6 +21,7 @@
   }
   img {
     height: 500px;
+    border-radius: 10px;
   }
 }
 
@@ -30,4 +31,8 @@
   top: 20%;
   left: 30%;
   transform: tranlsate(-50%, -50%);
+}
+
+.show_img {
+  border-radius: 10px;  
 }

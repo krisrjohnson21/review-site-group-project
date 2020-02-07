@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import _ from 'lodash'
 
 import TextField from '../reviewcomponents/TextField'
 import ErrorList from '../reviewcomponents/ErrorList'
 
 const EditCapeFormContainer = props => {
-
+  let className = "hidden"
+  const [finishedEdit, setFinishedEdit] = useState(false)
   const [editedCape, setEditedCape] = useState({
     name: "",
     fullName: "",
@@ -41,16 +42,24 @@ const EditCapeFormContainer = props => {
     })
   }
 
+  if (finishedEdit === true){
+    className="hidden"
+  }
+
   const handleEditSubmit = (event) => {
     event.preventDefault()
     if (validForSubmission()) {
       props.editCapeFunction(editedCape)
+      setFinishedEdit(true)
     }
   }
 
+  if (props.capeProps.currentUser === true && finishedEdit === false) {
+    className = ""
+  }
 
   return(
-
+    <div className={className}>
     <form className="text-center" onSubmit={handleEditSubmit}>
       <h2>Edit Your Custom Superhero:</h2>
       <ErrorList errors={errors} />
@@ -131,6 +140,7 @@ const EditCapeFormContainer = props => {
         <input className="button" type="submit" value="Submit Edits" />
       </div>
     </form>
+    </div>
 
   )
 }

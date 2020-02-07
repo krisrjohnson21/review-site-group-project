@@ -34,7 +34,7 @@ class Api::V1::CapesController < ApiController
 
   protected
   def cape_params
-    params.require(:cape).permit(:name,:full_name,:gender,:affiliation,:intelligence,:strength,:speed,:url)
+    params.require(:cape).permit(:name,:full_name,:gender,:affiliation,:intelligence,:strength,:speed,:url, :user)
   end
 
   def authorize_user

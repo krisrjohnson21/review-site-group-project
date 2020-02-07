@@ -8,7 +8,6 @@ import humps from 'humps';
 const CapeShowContainer = ({ match }) => {
   const [cape, setCape] = useState({});
   const [reviews, setReviews] = useState([]);
-  const [currentUser, setCurrentUser] = useState(false)
   const capeId = match.params.id;
 
   useEffect(() => {
@@ -59,10 +58,6 @@ const CapeShowContainer = ({ match }) => {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   };
 
-  if (cape.current_user) {
-    setCurrentUser(true)
-  }
-
   const editCapeFunction = editedCape => {
     let decamelize = humps.decamelizeKeys(editedCape)
     fetch(`/api/v1/capes/${capeId}`, {
@@ -87,8 +82,8 @@ const CapeShowContainer = ({ match }) => {
         return response.json();
       })
       .then(response => {
-        setCape(response.cape);
-        debugger
+      let camelized = humps.camelizeKeys(response.cape)
+        setCape(camelized);
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   };
@@ -111,10 +106,12 @@ const CapeShowContainer = ({ match }) => {
         <CapeShow key={cape.id} capeData={cape} />
         <hr />
 
+      <div>
         <EditCapeFormContainer
           capeProps={cape}
           editCapeFunction={editCapeFunction}
         />
+      </div>
 
         <hr />
         <h2>

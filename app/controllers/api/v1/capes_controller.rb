@@ -1,5 +1,5 @@
 class Api::V1::CapesController < ApiController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, only: [:create, :update]
 
   def index
     render json: Cape.all
@@ -34,7 +34,20 @@ class Api::V1::CapesController < ApiController
 
   protected
   def cape_params
-    params.require(:cape).permit(:name,:full_name,:gender,:affiliation,:intelligence,:strength,:speed,:url, :user, :power, :durability, :combat)
+    params.require(:cape).permit(
+      :name,
+      :full_name,
+      :gender,
+      :affiliation,
+      :intelligence,
+      :strength,
+      :speed,
+      :url,
+      :user,
+      :power,
+      :durability,
+      :combat
+    )
   end
 
   def authorize_user

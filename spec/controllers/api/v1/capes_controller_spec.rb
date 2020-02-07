@@ -48,8 +48,8 @@ RSpec.describe Api::V1::CapesController, type: :controller do
 
       expect(returned_json["capes"].length).to be 2
 
-      expect(returned_json["capes"][0].length).to be 14
-      expect(returned_json["capes"][1].length).to be 14
+      expect(returned_json["capes"][0].length).to be 15
+      expect(returned_json["capes"][1].length).to be 15
 
       expect(returned_json["capes"][0]["name"]).to eq "Trogdor"
       expect(returned_json["capes"][0]["full_name"]).to eq "Trogdor The Burninator"

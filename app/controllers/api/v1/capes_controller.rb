@@ -6,7 +6,7 @@ class Api::V1::CapesController < ApiController
   end
 
   def show
-    render json: Cape.find(params[:id])
+    render json: Cape.find(params["id"]), serializer: CapeSerializer
   end
 
   def create
@@ -19,9 +19,22 @@ class Api::V1::CapesController < ApiController
     end
   end
 
+  def update
+    cape = Cape.find(params["id"])
+    cape.update_attributes(cape_params)
+
+    if cape.save
+      flash[:notice] = "Superhero was successfully updated!"
+      render json: cape
+    else
+      flash.now[:errors] = cape.errors.full_messages.to_sentence
+      render json: cape
+    end
+  end
+
   protected
   def cape_params
-    params.require(:cape).permit(:name,:full_name,:gender,:affiliation,:intelligence,:strength,:speed,:url)
+    params.require(:cape).permit(:name,:full_name,:gender,:affiliation,:intelligence,:strength,:speed,:url, :user, :power, :durability, :combat)
   end
 
   def authorize_user

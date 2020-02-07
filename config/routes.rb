@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/superheroes', to: "static_pages#index"
   get '/superheroes/:id', to: "static_pages#index"
+  get '/superheroes/:id/edit', to: "static_pages#index"
   get '/superheroes/:id/reviews', to: "static_pages#index"
   get '/', to: "static_pages#index"
   get '/new', to: "static_pages#index"
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :capes, only: [:index, :create, :show] do
+      resources :capes, only: [:index, :create, :show, :update] do
         resources :reviews, only: [:index, :show, :create]
       end
     end

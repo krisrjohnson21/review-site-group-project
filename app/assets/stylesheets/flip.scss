@@ -1,6 +1,10 @@
 $cream: #fcfae3;
 $custom-gold: rgba(252, 214, 0, 1);
 
+.hidden {
+  display: none;
+}
+
 .__color {
   color: $cream;
 }

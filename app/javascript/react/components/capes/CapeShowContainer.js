@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Review from '../reviewcomponents/Review';
 import ReviewFormContainer from '../reviewcomponents/ReviewFormContainer';
+import EditCapeFormContainer from './EditCapeFormContainer';
 import CapeShow from './CapeShow';
 import humps from 'humps';
 
@@ -11,26 +12,25 @@ const CapeShowContainer = ({ match }) => {
 
   useEffect(() => {
     fetch(`/api/v1/capes/${capeId}`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(response => {
-        let camelize = humps.camelizeKeys(response.cape)
-        setCape(camelize);
-        setReviews(response.cape.reviews);
-      })
-      .catch(error => console.error(`Error in fetch: ${error.message}`));
-  }, []);
+    .then(response => {
+      if (response.ok) {
+        return response
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+          throw(error)
+      }
+    })
+    .then(response => response.json())
+    .then(response => {
+      let camelize = humps.camelizeKeys(response.cape)
+      setCape(camelize)
+      setReviews(response.cape.reviews)
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }, [])
 
   const addNewReview = formPayload => {
-    let capeId = match.params.id;
     fetch(`/api/v1/capes/${capeId}/reviews/`, {
       credentials: 'same-origin',
       method: 'POST',
@@ -58,6 +58,36 @@ const CapeShowContainer = ({ match }) => {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   };
 
+  const editCapeFunction = editedCape => {
+    let decamelize = humps.decamelizeKeys(editedCape)
+    fetch(`/api/v1/capes/${capeId}`, {
+      credentials: 'same-origin',
+      method: 'PATCH',
+      body: JSON.stringify(decamelize),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => {
+        return response.json();
+      })
+      .then(response => {
+      let camelized = humps.camelizeKeys(response.cape)
+        setCape(camelized);
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  };
+
   const reviewList = reviews.map(review => {
     return (
       <Review
@@ -74,6 +104,15 @@ const CapeShowContainer = ({ match }) => {
     <>
       <div className='text-center'>
         <CapeShow key={cape.id} capeData={cape} />
+        <hr />
+
+      <div>
+        <EditCapeFormContainer
+          capeProps={cape}
+          editCapeFunction={editCapeFunction}
+        />
+      </div>
+
         <hr />
         <h2>
           <strong>Reviews for {cape.name}</strong>

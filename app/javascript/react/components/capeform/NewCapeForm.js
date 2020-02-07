@@ -13,7 +13,10 @@ const NewCapeForm = props => {
     intelligence: 1,
     strength: 1,
     speed: 1,
-    url: ''
+    url: '',
+    durability: 1,
+    power: 1,
+    combat: 1
   };
   const [form, setForm] = useState(defaultForm);
   const [errors, setErrors] = useState({});
@@ -209,6 +212,45 @@ const NewCapeForm = props => {
                       name='speed'
                       type='number'
                       value={form.speed}
+                    />
+                  </label>
+                </div>
+
+                <div className='medium-6 cell'>
+                  <label>
+                    Durability
+                    <input
+                      onChange={onFormChange}
+                      id='durability'
+                      name='durability'
+                      type='number'
+                      value={form.durability}
+                    />
+                  </label>
+                </div>
+
+                <div className='medium-6 cell'>
+                  <label>
+                    Power
+                    <input
+                      onChange={onFormChange}
+                      id='power'
+                      name='power'
+                      type='number'
+                      value={form.power}
+                    />
+                  </label>
+                </div>
+
+                <div className='medium-6 cell'>
+                  <label>
+                    Combat
+                    <input
+                      onChange={onFormChange}
+                      id='combat'
+                      name='combat'
+                      type='number'
+                      value={form.combat}
                     />
                   </label>
                 </div>

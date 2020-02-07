@@ -24,6 +24,15 @@ describe Cape do
   it { should have_valid(:speed).when(50) }
   it { should_not have_valid(:speed).when(nil) }
 
+  it { should have_valid(:durability).when(50) }
+  it { should_not have_valid(:durability).when(nil) }
+
+  it { should have_valid(:power).when(50) }
+  it { should_not have_valid(:power).when(nil) }
+
+  it { should have_valid(:combat).when(50) }
+  it { should_not have_valid(:combat).when(nil) }
+
   it { should have_valid(:url).when("a url string") }
   it { should_not have_valid(:url).when(nil, "") }
 end

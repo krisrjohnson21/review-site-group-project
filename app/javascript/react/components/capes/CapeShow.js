@@ -1,7 +1,10 @@
 import {
   faBolt,
   faBrain,
-  faFistRaised
+  faFistRaised,
+  faDumbbell,
+  faBatteryFull,
+  faUserNinja
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
@@ -62,7 +65,7 @@ const CapeShow = ({ capeData }) => {
           <div className='stats-row'>
             <div>
               <div className='title'>Durability</div>
-              <FontAwesomeIcon icon={faBolt} />
+              <FontAwesomeIcon icon={faDumbbell} />
 
               <div className='value' id='durability'>
                 {durability}
@@ -70,7 +73,7 @@ const CapeShow = ({ capeData }) => {
             </div>
             <div>
               <div className='title'>Power</div>
-              <FontAwesomeIcon icon={faBolt} />
+              <FontAwesomeIcon icon={faBatteryFull} />
 
               <div className='value' id='power'>
                 {power}
@@ -78,7 +81,7 @@ const CapeShow = ({ capeData }) => {
             </div>
             <div>
               <div className='title'>Combat</div>
-              <FontAwesomeIcon icon={faBolt} />
+              <FontAwesomeIcon icon={faUserNinja} />
 
               <div className='value' id='combat'>
                 {combat}

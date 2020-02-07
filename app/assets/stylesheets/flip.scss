@@ -102,6 +102,17 @@ h1 {
   color: $custom-gold;
 }
 
+.stats-row {
+  font-size: 2rem;
+  display: flex;
+  position: relative;
+  left: 1rem;
+  right: 1rem;
+  top: auto;
+  margin-top: 150px;
+  color: $custom-gold;
+}
+
 .stats > div {
   flex: 1;
   text-align: center;
@@ -118,6 +129,28 @@ h1 {
 }
 
 .stats div.value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+}
+
+.stats-row > div {
+  flex: 1;
+  text-align: center;
+  margin-left: -40px;
+}
+
+.stats-row i {
+  display: block;
+}
+
+.stats-row div.title {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.stats-row div.value {
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1.5rem;

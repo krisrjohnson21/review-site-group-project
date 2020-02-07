@@ -6,35 +6,43 @@
 
 -Title: Zero to Hero
 
--Description: A site where users can view superheroes and reviews left by other
-  users, so you'll always know who to call when you get in trouble. Users can also
-  leave reviews of their own, based on multiple heroic categories.
+Description: Users can view superheroes and reviews left by other
+users, so you'll always know who to call when you get in trouble. Users can also
+add heroes and leave reviews of their own, with multiple heroic attributes.
 
--Authors:
-  -Chris Smith
-  -Erica Huang
-  -Kris Johnson
-  -Ned Lehman
+-Authors:<br />
+-Chris Smith<br />
+-Erica Huang<br />
+-Kris Johnson<br />
+-Ned Lehman<br />
 
-<!-- This README would normally document whatever steps are necessary to get the
-application up and running.
+Heroku Link
+https://zero-to-hero-20.herokuapp.com/
 
-Things you may want to cover:
+# Technologies
 
-* Ruby version
+-Ruby - 2.6.3
+-Rails - 5.2.3
+-React - 16.8.0
+-CarrierWave - 2.0.2
+-Foundation-Rails - 6.5.3.0
 
-* System dependencies
+# Setup
 
-* Configuration
+To set up this app, download the repo and run the following commands in your terminal in exact order:
 
-* Database creation
+-yarn install<br />
+-bundle exec bundle install<br />
+-bundle exec rake db:create<br />
+-bundle exec rake db:migrate && bundle exec rake db:rollback && bundle exec rake db:migrate<br />
+-bundle exec rake db:seed<br />
+-yarn start<br />
+-new tab- bundle exec rails s<br />
+-Navigate your browser to localhost:3000
 
-* Database initialization
+# Testing
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ... -->
+To run tests, run these files in a separate terminal tab:<br />
+-bundle exec rake db:test:prepare<br />
+-bundle exec rspec<br />
+-yarn run test

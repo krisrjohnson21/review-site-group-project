@@ -17,7 +17,10 @@ describe('CapeTile', () => {
       strength: 5,
       speed: 40,
       url:
-        'https://cdn.bulbagarden.net/upload/thumb/a/a6/Roxanne_Nosepass_Adventures.png/200px-Roxanne_Nosepass_Adventures.png'
+        'https://cdn.bulbagarden.net/upload/thumb/a/a6/Roxanne_Nosepass_Adventures.png/200px-Roxanne_Nosepass_Adventures.png',
+      durability: 4,
+      power: 8,
+      combat: 3,
     };
     wrapper = mount(
       <BrowserRouter>
@@ -28,18 +31,6 @@ describe('CapeTile', () => {
 
   it('should render an h1 tag with the name of the cape', () => {
     expect(wrapper.find('#name').text()).toBe('Super Nick');
-  });
-
-  it('should render a h5 tag with the intelligence of the cape', () => {
-    expect(wrapper.find('#intelligence').text()).toBe('Intelligence: 99');
-  });
-
-  it('should render a h6 tag with the strength of the cape', () => {
-    expect(wrapper.find('#strength').text()).toBe('Strength: 5');
-  });
-
-  it('should render a p tag with the speed of the cape', () => {
-    expect(wrapper.find('#speed').text()).toBe('Speed: 40');
   });
 
   it('should render an img tag with the url of the cape', () => {

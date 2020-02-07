@@ -15,7 +15,10 @@ const CapeShow = ({ capeData }) => {
     intelligence,
     strength,
     speed,
-    url
+    url,
+    durability,
+    power,
+    combat
   } = capeData;
   return (
     <>
@@ -53,6 +56,32 @@ const CapeShow = ({ capeData }) => {
 
               <div className='value' id='speed'>
                 {speed}
+              </div>
+            </div>
+          </div>
+          <div className='stats-row'>
+            <div>
+              <div className='title'>Durability</div>
+              <FontAwesomeIcon icon={faBolt} />
+
+              <div className='value' id='durability'>
+                {durability}
+              </div>
+            </div>
+            <div>
+              <div className='title'>Power</div>
+              <FontAwesomeIcon icon={faBolt} />
+
+              <div className='value' id='power'>
+                {power}
+              </div>
+            </div>
+            <div>
+              <div className='title'>Combat</div>
+              <FontAwesomeIcon icon={faBolt} />
+
+              <div className='value' id='combat'>
+                {combat}
               </div>
             </div>
           </div>

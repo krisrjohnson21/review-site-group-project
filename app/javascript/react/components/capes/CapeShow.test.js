@@ -19,7 +19,10 @@ describe('CapeShow', () => {
       strength: 77,
       speed: 89,
       url:
-        'https://s3-prod.adage.com/s3fs-public/styles/width_1024/public/little_debbie.jpg'
+        'https://s3-prod.adage.com/s3fs-public/styles/width_1024/public/little_debbie.jpg',
+      durability: 55,
+      power: 44,
+      combat: 33,
     };
 
     wrapper = mount(
@@ -63,5 +66,17 @@ describe('CapeShow', () => {
 
   it('should render an h4 tag with the speed of the cape', () => {
     expect(wrapper.find('#speed').text()).toBe('89');
+  });
+
+  it('should render an h4 tag with the durability of the cape', () => {
+    expect(wrapper.find('#durability').text()).toBe('55');
+  });
+
+  it('should render an h4 tag with the power of the cape', () => {
+    expect(wrapper.find('#power').text()).toBe('44');
+  });
+
+  it('should render an h4 tag with the combat of the cape', () => {
+    expect(wrapper.find('#combat').text()).toBe('33');
   });
 });

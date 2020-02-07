@@ -12,16 +12,19 @@ const EditCapeFormContainer = props => {
     fullName: "",
     gender: "",
     affiliation: "",
-    intelligence: "",
-    strength: "",
-    speed: "",
-    url: ""
+    intelligence: 1,
+    strength: 1,
+    speed: 1,
+    url: "",
+    durability: 1,
+    power: 1,
+    combat: 1
   })
   const [errors, setErrors] = useState({})
 
   const validForSubmission = () => {
     let submitErrors = {}
-    const requiredFields = ["name", "fullName", "gender", "affiliation", "intelligence", "strength", "speed", "url"]
+    const requiredFields = ["name", "fullName", "gender", "affiliation", "intelligence", "strength", "speed", "url", "durability", "power", "combat"]
     requiredFields.forEach((field) => {
       if (editedCape[field].toString().trim() === "") {
         submitErrors = {
@@ -133,6 +136,33 @@ const EditCapeFormContainer = props => {
         fieldName="speed"
         id="speed"
         content={editedCape.speed}
+        handleChange={handleFieldChange}
+      />
+
+    <label>Durability</label>
+      <TextField
+        type="number"
+        fieldName="durability"
+        id="durability"
+        content={editedCape.durability}
+        handleChange={handleFieldChange}
+      />
+
+    <label>Power</label>
+      <TextField
+        type="number"
+        fieldName="power"
+        id="power"
+        content={editedCape.power}
+        handleChange={handleFieldChange}
+      />
+
+    <label>Combat</label>
+      <TextField
+        type="number"
+        fieldName="combat"
+        id="combat"
+        content={editedCape.combat}
         handleChange={handleFieldChange}
       />
 
